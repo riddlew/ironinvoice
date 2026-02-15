@@ -1,0 +1,18 @@
+# Ignores all files in .idea directory by default
+.idea/*
+
+# Except for these project-level files and directories:
+!.idea/encodings.xml
+!.idea/misc.xml
+!.idea/modules.xml
+!.idea/vcs.xml
+!.idea/workspace.xml
+!.idea/codeStyleSettings.xml
+!.idea/copyright/
+!.idea/dictionaries/
+!.idea/inspectionProfiles/
+!.idea/runConfigurations/
+
+# Ignore all .env files except examples
+*.env
+!*.example.env
