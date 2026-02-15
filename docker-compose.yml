@@ -1,0 +1,48 @@
+# Ports:
+# - 6000-6009: apps
+# - 6010-6019: databases and services
+# - 6020+: admin and tools
+
+# Current port map:
+# 6001: api
+# 6002: react frontend
+# 6010: postgres
+# 6020: adminer
+
+services:
+  postgres:
+    image: postgres:18
+    container_name: ironinvoice-postgres
+    shm_size: 128mb
+    env_file:
+      - infrastructure/env/postgres.env
+    ports:
+      - "6010:5432"
+    restart: always
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\" -h localhost -p 5432"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+      start_period: 10s
+
+  adminer:
+    image: adminer
+    container_name: ironinvoice-adminer
+    ports:
+      - "6020:8080"
+    restart: always
+
+  api:
+    build:
+      dockerfile: infrastructure/docker/api.Dockerfile
+    container_name: ironinvoice-api
+    env_file:
+      - infrastructure/env/api.env
+    ports:
+      - "6000:8080"
+      - "5005:5005" # Remote debugging port
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
