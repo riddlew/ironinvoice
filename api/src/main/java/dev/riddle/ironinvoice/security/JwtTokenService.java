@@ -32,9 +32,9 @@ public class JwtTokenService {
 		this.issuer = issuer;
 		this.accessTtl = Duration.ofMinutes(accessTtlMinutes);
 		this.parser = Jwts
-			.parserBuilder()
+			.parser()
 			.requireIssuer(issuer)
-			.setSigningKey(key)
+			.verifyWith(key)
 			.build();
 	}
 
@@ -44,20 +44,20 @@ public class JwtTokenService {
 
 		return Jwts
 			.builder()
-			.setIssuer(issuer)
-			.setSubject(user.id().toString())
-			.setIssuedAt(Date.from(now))
-			.setExpiration(Date.from(expiration))
+			.issuer(issuer)
+			.subject(user.id().toString())
+			.issuedAt(Date.from(now))
+			.expiration(Date.from(expiration))
 			.claim("email", user.email())
 			.claim("roles", new ArrayList<>(roles))
-			.signWith(key, SignatureAlgorithm.HS256)
+			.signWith(key, Jwts.SIG.HS256)
 			.compact();
 
 	}
 
 	public Optional<Authentication> tryBuildAuthentication(String token) {
 		try {
-			Claims claims = parser.parseClaimsJws(token).getBody();
+			Claims claims = parser.parseSignedClaims(token).getPayload();
 			UUID userId = UUID.fromString(claims.getSubject());
 			String email = claims.get("email", String.class);
 			List<String> roles = extractRoles(claims.get("roles"));
