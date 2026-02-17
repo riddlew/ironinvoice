@@ -131,12 +131,15 @@ public class UploadService {
 				.resolve(storageKey)
 				.normalize();
 
-			if (!destination.startsWith(uploadsRoot.toAbsolutePath().normalize())) {
+			Path absoluteDestination = destination.toAbsolutePath().normalize();
+			Path absoluteUploadsRoot = uploadsRoot.toAbsolutePath().normalize();
+
+			if (!absoluteDestination.startsWith(absoluteUploadsRoot)) {
 				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid storage path ");
 			}
 
-			Files.copy(file.getInputStream(), destination);
-			return destination;
+			Files.copy(file.getInputStream(), absoluteDestination);
+			return absoluteDestination;
 
 		} catch (IOException ex) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to save file to storage");
