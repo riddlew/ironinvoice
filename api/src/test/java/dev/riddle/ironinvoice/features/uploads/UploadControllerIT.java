@@ -1,47 +1,36 @@
 package dev.riddle.ironinvoice.features.uploads;
 
 import dev.riddle.ironinvoice.config.properties.StorageProperties;
+import dev.riddle.ironinvoice.persistence.entity.UserEntity;
+import dev.riddle.ironinvoice.persistence.repository.UserRepository;
 import dev.riddle.ironinvoice.security.AuthUser;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import dev.riddle.ironinvoice.security.JwtTokenService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
-import org.springframework.context.annotation.Bean;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.DynamicPropertyRegistry;
 import org.springframework.test.context.DynamicPropertySource;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.web.filter.OncePerRequestFilter;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.postgresql.PostgreSQLContainer;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.JsonNode;
 import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.UUID;
 
 import static org.hamcrest.Matchers.*;
-import static org.junit.jupiter.api.Assertions.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -59,8 +48,23 @@ public class UploadControllerIT {
 	@TempDir
 	static Path tempDir;
 
+	@Autowired
+	private UserRepository userRepository;
+
+	@Autowired
+	JwtTokenService jwtTokenService;
+
 	StorageProperties storageProperties;
-	UUID userId;
+	UserEntity user;
+
+	private String bearerFor(UserEntity userEntity) {
+		String token = jwtTokenService.createAccessToken(
+			new AuthUser(userEntity.getId(), userEntity.getEmail()),
+			userEntity.getRoles()
+		);
+
+		return "Bearer " + token;
+	}
 
 	@BeforeEach
 	void setUp(@TempDir Path tempDir) {
@@ -70,7 +74,15 @@ public class UploadControllerIT {
 			5
 		);
 
-		userId = UUID.randomUUID();
+		UUID userId = UUID.randomUUID();
+
+		UserEntity userEntity = new UserEntity();
+		userEntity.setEmail("test-" + userId + "@example.com");
+		userEntity.setDisplayName("Test User " + userId);
+		userEntity.setPasswordHash("user-password-hash");
+		userEntity.setEnabled(true);
+		userEntity.setRoles(List.of("ROLE_USER"));
+		user = userRepository.save(userEntity);
 	}
 
 	@DynamicPropertySource
@@ -88,48 +100,6 @@ public class UploadControllerIT {
 		.withUsername("test")
 		.withPassword("test");
 
-	@TestConfiguration
-	static class TestSecurityConfig {
-		@Bean
-		SecurityFilterChain testChain(HttpSecurity http) throws Exception {
-			return http
-				.csrf(csrf -> csrf.disable())
-				.authorizeHttpRequests(a -> a.anyRequest().permitAll())
-				.addFilterBefore(new TestUserFilter(), UsernamePasswordAuthenticationFilter.class)
-				.build();
-		}
-	}
-
-	static class TestUserFilter extends OncePerRequestFilter {
-		@Override
-		protected void doFilterInternal(
-			HttpServletRequest request,
-			HttpServletResponse response,
-			FilterChain filterChain
-		) throws ServletException, IOException {
-			try {
-				String userIdHeader = request.getHeader("X-Test-UserId");
-				UUID userId = userIdHeader != null ? UUID.fromString(userIdHeader) : UUID.fromString("00000000-0000-0000-0000-000000000001");
-				var principal = new AuthUser(userId, "test@example.com");
-				var auth = new UsernamePasswordAuthenticationToken(
-					principal,
-					null,
-					List.of(new SimpleGrantedAuthority("ROLE_USER"))
-				);
-
-				SecurityContextHolder
-					.getContext()
-					.setAuthentication(auth);
-
-				filterChain.doFilter(request, response);
-			} catch (Exception ex) {
-				throw new RuntimeException(ex);
-			} finally {
-				SecurityContextHolder.clearContext();
-			}
-		}
-	}
-
 	@Test
 	void upload_withGoodCsv_returns200_withHeadersAndRowCount() throws Exception {
 		var fileResource = new ClassPathResource("fixtures/uploads/good_data.csv");
@@ -146,7 +116,8 @@ public class UploadControllerIT {
 					multipart("/api/uploads")
 						.file(file)
 						.contentType(MediaType.MULTIPART_FORM_DATA)
-						.header("X-Test-UserId", userId.toString()))
+						.header("X-Test-UserId", user.getId().toString())
+						.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
 				.andExpect(status().isOk())
 				.andExpect(jsonPath("$.id", notNullValue()))
 				.andExpect(jsonPath("$.rowCount", is(100)))
@@ -155,11 +126,34 @@ public class UploadControllerIT {
 	}
 
 	@Test
+	void upload_withNonExistentUser_returns404() throws Exception {
+		var fileResource = new ClassPathResource("fixtures/uploads/good_data.csv");
+		UUID nonExistentUserId = UUID.randomUUID();
+
+		try (InputStream in = fileResource.getInputStream()) {
+			var file = new MockMultipartFile(
+				"file",
+				"good_data.csv",
+				"text/csv",
+				in
+			);
+
+			mockMvc.perform(
+					multipart("/api/uploads")
+						.file(file)
+						.contentType(MediaType.MULTIPART_FORM_DATA)
+						.header("X-Test-UserId", user.getId().toString()))
+				.andExpect(status().isForbidden());
+		}
+	}
+
+	@Test
 	void upload_missingFile_returns400() throws Exception {
 		mockMvc.perform(
 				multipart("/api/uploads")
 					.contentType(MediaType.MULTIPART_FORM_DATA)
-					.header("X-Test-UserId", userId.toString()))
+					.header("X-Test-UserId", user.getId().toString())
+					.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
 			.andExpect(status().isBadRequest());
 	}
 
@@ -180,7 +174,8 @@ public class UploadControllerIT {
 					multipart("/api/uploads")
 						.file(file)
 						.contentType(MediaType.MULTIPART_FORM_DATA)
-						.header("X-Test-UserId", userId.toString()))
+						.header("X-Test-UserId", user.getId().toString())
+						.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
 				.andExpect(status().isBadRequest());
 		}
 	}
@@ -202,7 +197,8 @@ public class UploadControllerIT {
 					multipart("/api/uploads")
 						.file(file)
 						.contentType(MediaType.MULTIPART_FORM_DATA)
-						.header("X-Test-UserId", userId.toString()))
+						.header("X-Test-UserId", user.getId().toString())
+						.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
 				.andExpect(status().isUnsupportedMediaType());
 		}
 	}
@@ -224,7 +220,8 @@ public class UploadControllerIT {
 					multipart("/api/uploads")
 						.file(file)
 						.contentType(MediaType.MULTIPART_FORM_DATA)
-						.header("X-Test-UserId", userId.toString()))
+						.header("X-Test-UserId", user.getId().toString())
+						.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
 				.andExpect(status().isBadRequest());
 		}
 	}
@@ -246,7 +243,8 @@ public class UploadControllerIT {
 					multipart("/api/uploads")
 						.file(file)
 						.contentType(MediaType.MULTIPART_FORM_DATA)
-						.header("X-Test-UserId", userId.toString()))
+						.header("X-Test-UserId", user.getId().toString())
+						.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
 				.andExpect(status().isBadRequest());
 		}
 	}
@@ -275,13 +273,13 @@ public class UploadControllerIT {
 				multipart("/api/uploads")
 					.file(file)
 					.contentType(MediaType.MULTIPART_FORM_DATA)
-					.header("X-Test-UserId", userId))
+					.header("X-Test-UserId", user.getId().toString())
+					.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
 			.andExpect(status().isContentTooLarge());
 	}
 
 	@Test
 	void get_upload_withWrongOwner_returns404() throws Exception {
-		var firstUser = UUID.randomUUID();
 		var secondUser = UUID.randomUUID();
 		var fileResource = new ClassPathResource("fixtures/uploads/good_data.csv");
 
@@ -300,7 +298,8 @@ public class UploadControllerIT {
 					multipart("/api/uploads")
 						.file(file)
 						.contentType(MediaType.MULTIPART_FORM_DATA)
-						.header("X-Test-UserId", firstUser))
+						.header("X-Test-UserId", user.getId().toString())
+						.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
 				.andExpect(status().isOk())
 				.andReturn()
 				.getResponse()
@@ -313,12 +312,13 @@ public class UploadControllerIT {
 
 		mockMvc.perform(
 				get("/api/uploads/{id}", id)
-					.header("X-Test-UserId", firstUser.toString()))
+					.header("X-Test-UserId", user.getId().toString())
+					.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
 			.andExpect(status().isOk());
 
 		mockMvc.perform(
 			get("/api/uploads/{id}", id)
 				.header("X-Test-UserId", secondUser.toString()))
-			.andExpect(status().isNotFound());
+			.andExpect(status().isForbidden());
 	}
 }
