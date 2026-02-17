@@ -1,3 +1,6 @@
+# Ignore IntelliJ automatically creating .ai folder
+.ai/
+
 # Ignores all files in .idea directory by default
 .idea/*
 
