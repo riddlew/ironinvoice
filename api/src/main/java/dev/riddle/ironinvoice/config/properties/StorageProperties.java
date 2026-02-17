@@ -14,6 +14,6 @@ public record StorageProperties(
 	@DefaultValue("10485760")
 	long maxBytes,
 
-	@DefaultValue("100")
+	@DefaultValue("10")
 	int sampleLimit
 ) {}

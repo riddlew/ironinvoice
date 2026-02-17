@@ -69,7 +69,7 @@
       <recent name="$PROJECT_DIR$/api/src/main/resources/db/migration" />
     </key>
   </component>
-  <component name="RunManager" selected="Remote JVM Debug.Debug API Container">
+  <component name="RunManager" selected="Docker.Run All">
     <configuration name="UploadControllerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="ironinvoice" />
       <extension name="coverage">
@@ -210,7 +210,23 @@
       <option name="project" value="LOCAL" />
       <updated>1771332696703</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="test: add edge case tests for UploadController and update configurations&#10;&#10;- Added test cases for empty file, malformed headers, malformed CSV, and oversized CSV uploads.&#10;- Updated `.idea/workspace.xml` with new run configurations for debugging and test environments.">
+      <option name="closed" value="true" />
+      <created>1771339129520</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1771339129520</updated>
+    </task>
+    <task id="LOCAL-00005" summary="fix: ensure normalized paths in UploadService to prevent path traversal vulnerabilities">
+      <option name="closed" value="true" />
+      <created>1771339142779</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1771339142779</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -231,17 +247,8 @@
     <MESSAGE value="fixup! feat: Add CSV upload, storage configuration" />
     <MESSAGE value="feat: Add testcontainers for integration testing and improve UploadService serialization&#10;&#10;- Updated `pom.xml` with testcontainers dependencies for PostgreSQL integration testing.&#10;- Modified `UploadEntity` to use `@JdbcTypeCode` for JSON column mapping.&#10;- Refactored `UploadService` to directly handle `List&lt;String&gt;` for headers.&#10;- Introduced a `@Profile` annotation for `SecurityConfig` to exclude it in test environments.&#10;- Added an integration test (`UploadControllerIT`) using testcontainers and a test security configuration.&#10;- Added `application-test.yml` for test-specific configuration." />
     <MESSAGE value="test: enhance test coverage for UploadController and UploadService&#10;&#10;- Added new test cases for handling missing files, non-CSV file uploads, unauthorized access, and various error scenarios.&#10;- Refactored existing test cases to handle exceptions explicitly with `throws` declarations." />
-    <option name="LAST_COMMIT_MESSAGE" value="test: enhance test coverage for UploadController and UploadService&#10;&#10;- Added new test cases for handling missing files, non-CSV file uploads, unauthorized access, and various error scenarios.&#10;- Refactored existing test cases to handle exceptions explicitly with `throws` declarations." />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/api/src/main/java/dev/riddle/ironinvoice/features/uploads/UploadService.java</url>
-          <line>136</line>
-          <option name="timeStamp" value="2" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="test: add edge case tests for UploadController and update configurations&#10;&#10;- Added test cases for empty file, malformed headers, malformed CSV, and oversized CSV uploads.&#10;- Updated `.idea/workspace.xml` with new run configurations for debugging and test environments." />
+    <MESSAGE value="fix: ensure normalized paths in UploadService to prevent path traversal vulnerabilities" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix: ensure normalized paths in UploadService to prevent path traversal vulnerabilities" />
   </component>
 </project>
