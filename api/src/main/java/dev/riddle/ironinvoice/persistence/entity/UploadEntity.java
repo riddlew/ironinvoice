@@ -3,10 +3,14 @@ package dev.riddle.ironinvoice.persistence.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.ColumnTransformer;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -46,9 +50,10 @@ public class UploadEntity {
 	private int rowCount;
 
 	@Column(name = "headers_json", nullable = false, columnDefinition = "jsonb")
+	@JdbcTypeCode(SqlTypes.JSON)
 	@Getter
 	@Setter
-	private String headersJson;
+	private List<String> headersJson;
 
 	@CreationTimestamp
 	@Column(name = "created_at", nullable = false)

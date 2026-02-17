@@ -56,7 +56,7 @@ public class UploadService {
 		uploadEntity.setOriginalFilename(originalFilename);
 		uploadEntity.setStorageKey(storageKey);
 		uploadEntity.setRowCount(scan.rowCount());
-		uploadEntity.setHeadersJson(toJson(scan.headers()));
+		uploadEntity.setHeadersJson(scan.headers());
 
 		UploadEntity savedUploadEntity = uploadRepository.save(uploadEntity);
 
@@ -77,7 +77,7 @@ public class UploadService {
 		return new UploadMetadata(
 			upload.getId(),
 			upload.getOriginalFilename(),
-			fromJsonHeaders(upload.getHeadersJson()),
+			upload.getHeadersJson(),
 			upload.getRowCount(),
 			upload.getCreatedAt()
 		);
@@ -188,23 +188,6 @@ public class UploadService {
 			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file");
 		} catch (IOException ex) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to parse CSV file");
-		}
-	}
-
-	private String toJson(List<String> headers) {
-		try {
-			return objectMapper.writeValueAsString(headers);
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to serialize headers");
-		}
-	}
-
-	private List<String> fromJsonHeaders(String headersJson) {
-		try {
-			return objectMapper.readValue(headersJson, new TypeReference<>() {
-			});
-		} catch (Exception e) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to deserialize headers");
 		}
 	}
 }
