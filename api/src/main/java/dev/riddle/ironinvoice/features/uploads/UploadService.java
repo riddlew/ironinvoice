@@ -89,7 +89,7 @@ public class UploadService {
 		}
 
 		if (file.getSize() > storageProperties.maxBytes()) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "File size exceeds maximum allowed");
+			throw new ResponseStatusException(HttpStatus.CONTENT_TOO_LARGE, "File size exceeds maximum allowed");
 		}
 
 		String contentType = Optional
@@ -153,7 +153,7 @@ public class UploadService {
 
 			CSVParser parser = CSVFormat.DEFAULT
 				.builder()
-					.setHeader()
+				.setHeader()
 				.setSkipHeaderRecord(true)
 				.setTrim(true)
 				.build()
@@ -163,7 +163,7 @@ public class UploadService {
 			headers.removeIf(header -> header == null || header.isBlank());
 
 			if (headers.isEmpty()) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CSV file must include headers");
+				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CSV file must include valid headers");
 			}
 
 			int rowCount = 0;
@@ -184,6 +184,8 @@ public class UploadService {
 			}
 
 			return new CsvScan(headers, rowCount, sample);
+		} catch (IllegalArgumentException ex) {
+			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file");
 		} catch (IOException ex) {
 			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to parse CSV file");
 		}
