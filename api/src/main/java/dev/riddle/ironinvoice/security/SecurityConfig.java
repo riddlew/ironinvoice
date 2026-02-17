@@ -1,7 +1,9 @@
 package dev.riddle.ironinvoice.security;
 
+import dev.riddle.ironinvoice.persistence.repository.UserRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
@@ -17,10 +19,11 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(
 		HttpSecurity http,
-		JwtTokenService jwtTokenService
+		JwtTokenService jwtTokenService,
+		UserRepository userRepository
 	) throws Exception {
 
-		JwtAuthFilter jwtAuthFilter = new JwtAuthFilter(jwtTokenService);
+		JwtAuthFilter jwtAuthFilter = new JwtAuthFilter(jwtTokenService, userRepository);
 
 		http
 			.csrf(csrf -> csrf.disable())
