@@ -31,6 +31,8 @@ import org.springframework.web.filter.OncePerRequestFilter;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.postgresql.PostgreSQLContainer;
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.JsonNode;
+import org.testcontainers.shaded.com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -40,7 +42,7 @@ import java.util.UUID;
 
 import static org.hamcrest.Matchers.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.authentication;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -100,7 +102,6 @@ public class UploadControllerIT {
 	}
 
 	static class TestUserFilter extends OncePerRequestFilter {
-
 		@Override
 		protected void doFilterInternal(
 			HttpServletRequest request,
@@ -131,7 +132,7 @@ public class UploadControllerIT {
 	}
 
 	@Test
-	void upload_withGoodCsv_returns200_withHeadersAndRowCount() {
+	void upload_withGoodCsv_returns200_withHeadersAndRowCount() throws Exception {
 		var fileResource = new ClassPathResource("fixtures/uploads/good_data.csv");
 
 		try (InputStream in = fileResource.getInputStream()) {
@@ -151,10 +152,80 @@ public class UploadControllerIT {
 				.andExpect(jsonPath("$.id", notNullValue()))
 				.andExpect(jsonPath("$.rowCount", is(100)))
 				.andExpect(jsonPath("$.headers", contains("name", "age", "phone_number", "email")));
+		}
+	}
 
-		} catch (Exception e) {
-			fail("Failed to process file: " + e.getMessage());
+	@Test
+	void upload_missingFile_returns400() throws Exception {
+		mockMvc.perform(
+				multipart("/api/uploads")
+					.contentType(MediaType.MULTIPART_FORM_DATA)
+					.header("X-Test-UserId", userId.toString()))
+			.andExpect(status().isBadRequest());
+	}
+
+	@Test
+	void upload_typeNotCsv_returns415() throws Exception {
+		var fileResource = new ClassPathResource("fixtures/uploads/not_a_csv.pdf");
+
+		try (InputStream in = fileResource.getInputStream()) {
+			var file = new MockMultipartFile(
+				"file",
+				"not_a_csv.pdf",
+				"application/pdf",
+				in
+			);
+
+			mockMvc
+				.perform(
+					multipart("/api/uploads")
+						.file(file)
+						.contentType(MediaType.MULTIPART_FORM_DATA)
+						.header("X-Test-UserId", userId.toString()))
+				.andExpect(status().isUnsupportedMediaType());
+		}
+	}
+
+	@Test
+	void get_upload_withWrongOwner_returns404() throws Exception {
+		var firstUser = UUID.randomUUID();
+		var secondUser = UUID.randomUUID();
+		var fileResource = new ClassPathResource("fixtures/uploads/good_data.csv");
+
+		String response;
+
+		try (InputStream in = fileResource.getInputStream()) {
+			var file = new MockMultipartFile(
+				"file",
+				"good_data.csv",
+				"text/csv",
+				in
+			);
+
+			response = mockMvc
+				.perform(
+					multipart("/api/uploads")
+						.file(file)
+						.contentType(MediaType.MULTIPART_FORM_DATA)
+						.header("X-Test-UserId", firstUser))
+				.andExpect(status().isOk())
+				.andReturn()
+				.getResponse()
+				.getContentAsString();
 		}
 
+		ObjectMapper mapper = new ObjectMapper();
+		JsonNode root = mapper.readTree(response);
+		String id = root.get("id").asText();
+
+		mockMvc.perform(
+				get("/api/uploads/{id}", id)
+					.header("X-Test-UserId", firstUser.toString()))
+			.andExpect(status().isOk());
+
+		mockMvc.perform(
+			get("/api/uploads/{id}", id)
+				.header("X-Test-UserId", secondUser.toString()))
+			.andExpect(status().isNotFound());
 	}
 }

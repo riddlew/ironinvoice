@@ -51,7 +51,7 @@ public class UploadServiceTest {
 	}
 
 	@Test
-	void createUpload_withGoodCsv_returnsHeaderAndRowCount_andStoresFile() {
+	void createUpload_withGoodCsv_returnsHeaderAndRowCount_andStoresFile() throws Exception {
 		when(uploadRepository.save(any())).thenAnswer(inv -> {
 			var uploadEntity = (UploadEntity) inv.getArgument(0);
 			uploadEntity.setId(UUID.randomUUID());
@@ -73,14 +73,11 @@ public class UploadServiceTest {
 			assertEquals(100, result.rowCount());
 			assertTrue(result.headers().contains("email"));
 			verify(uploadRepository, times(1)).save(any());
-
-		} catch (IOException e) {
-			fail("Failed to process file: " + e.getMessage());
 		}
 	}
 
 	@Test
-	void createUpload_withEmptyFile_throws400() {
+	void createUpload_withEmptyFile_throws400() throws Exception {
 		var fileResource = new ClassPathResource("fixtures/uploads/empty.csv");
 
 		try (InputStream in = fileResource.getInputStream()) {
@@ -98,14 +95,11 @@ public class UploadServiceTest {
 
 			assertEquals(400, ex.getStatusCode().value());
 			verifyNoInteractions(uploadRepository);
-
-		} catch (IOException e) {
-			fail("Failed to process file: " + e.getMessage());
 		}
 	}
 
 	@Test
-	void createUpload_withNonCsv_throws415() {
+	void createUpload_withNonCsv_throws415() throws Exception {
 		var fileResource = new ClassPathResource("fixtures/uploads/not_a_csv.pdf");
 
 		try (InputStream in = fileResource.getInputStream()) {
@@ -123,14 +117,11 @@ public class UploadServiceTest {
 
 			assertEquals(415, ex.getStatusCode().value());
 			verifyNoInteractions(uploadRepository);
-
-		} catch (IOException e) {
-			fail("Failed to process file: " + e.getMessage());
 		}
 	}
 
 	@Test
-	void createUpload_withMalformedHeaders_throws400() {
+	void createUpload_withMalformedHeaders_throws400() throws Exception {
 		var fileResource = new ClassPathResource("fixtures/uploads/malformed_headers.csv");
 
 		try (InputStream in = fileResource.getInputStream()) {
@@ -148,14 +139,11 @@ public class UploadServiceTest {
 
 			assertEquals(400, ex.getStatusCode().value());
 			verifyNoInteractions(uploadRepository);
-
-		} catch (IOException e) {
-			fail("Failed to process file: " + e.getMessage());
 		}
 	}
 
 	@Test
-	void createUpload_withMalformedCsv_throws400() {
+	void createUpload_withMalformedCsv_throws400() throws Exception {
 		var fileResource = new ClassPathResource("fixtures/uploads/malformed.csv");
 
 		try (InputStream in = fileResource.getInputStream()) {
@@ -173,14 +161,11 @@ public class UploadServiceTest {
 
 			assertEquals(400, ex.getStatusCode().value());
 			verifyNoInteractions(uploadRepository);
-
-		} catch (IOException e) {
-			fail("Failed to process file: " + e.getMessage());
 		}
 	}
 
 	@Test
-	void createUpload_withFileOverSizeLimit_throws413() {
+	void createUpload_withFileOverSizeLimit_throws413() throws Exception {
 		StorageProperties tempStorageProperties = new StorageProperties(
 			storageProperties.uploadsRoot(),
 			1L,
@@ -210,9 +195,6 @@ public class UploadServiceTest {
 
 			assertEquals(413, ex.getStatusCode().value());
 			verifyNoInteractions(uploadRepository);
-
-		} catch (IOException e) {
-			fail("Failed to process file: " + e.getMessage());
 		}
 	}
 }
