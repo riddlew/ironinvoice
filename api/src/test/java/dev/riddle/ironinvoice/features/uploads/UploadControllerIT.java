@@ -80,7 +80,6 @@ public class UploadControllerIT {
 		propertyRegistry.add("spring.datasource.password", postgres::getPassword);
 		propertyRegistry.add("spring.datasource.driver-class-name", postgres::getDriverClassName);
 		propertyRegistry.add("app.storage.uploads-root", () -> tempDir.resolve("uploads").toString());
-
 	}
 
 	@Container
@@ -165,6 +164,28 @@ public class UploadControllerIT {
 	}
 
 	@Test
+	void upload_emptyFile_returns400() throws Exception {
+		var fileResource = new ClassPathResource("fixtures/uploads/empty.csv");
+
+		try (InputStream in = fileResource.getInputStream()) {
+			var file = new MockMultipartFile(
+				"file",
+				"empty.csv",
+				"text/csv",
+				in
+			);
+
+			mockMvc
+				.perform(
+					multipart("/api/uploads")
+						.file(file)
+						.contentType(MediaType.MULTIPART_FORM_DATA)
+						.header("X-Test-UserId", userId.toString()))
+				.andExpect(status().isBadRequest());
+		}
+	}
+
+	@Test
 	void upload_typeNotCsv_returns415() throws Exception {
 		var fileResource = new ClassPathResource("fixtures/uploads/not_a_csv.pdf");
 
@@ -184,6 +205,78 @@ public class UploadControllerIT {
 						.header("X-Test-UserId", userId.toString()))
 				.andExpect(status().isUnsupportedMediaType());
 		}
+	}
+
+	@Test
+	void upload_withMalformedHeaders_returns400() throws Exception {
+		var fileResource = new ClassPathResource("fixtures/uploads/malformed_headers.csv");
+
+		try (InputStream in = fileResource.getInputStream()) {
+			var file = new MockMultipartFile(
+				"file",
+				"malformed_headers.csv",
+				"text/csv",
+				in
+			);
+
+			mockMvc
+				.perform(
+					multipart("/api/uploads")
+						.file(file)
+						.contentType(MediaType.MULTIPART_FORM_DATA)
+						.header("X-Test-UserId", userId.toString()))
+				.andExpect(status().isBadRequest());
+		}
+	}
+
+	@Test
+	void upload_withMalformedCsv_returns400() throws Exception {
+		var fileResource = new ClassPathResource("fixtures/uploads/malformed.csv");
+
+		try (InputStream in = fileResource.getInputStream()) {
+			var file = new MockMultipartFile(
+				"file",
+				"malformed.csv",
+				"text/csv",
+				in
+			);
+
+			mockMvc
+				.perform(
+					multipart("/api/uploads")
+						.file(file)
+						.contentType(MediaType.MULTIPART_FORM_DATA)
+						.header("X-Test-UserId", userId.toString()))
+				.andExpect(status().isBadRequest());
+		}
+	}
+
+	@Test
+	void upload_withTooLargeCsv_returns413() throws Exception {
+		byte[] bytes = new byte[((int) storageProperties.maxBytes()) + 1];
+
+		// set up one header so it doesn't fail for being empty
+		bytes[0] = 'e';
+		bytes[1] = 'm';
+		bytes[2] = 'a';
+		bytes[3] = 'i';
+		bytes[4] = 'l';
+		bytes[5] = '\n';
+
+		var file = new MockMultipartFile(
+			"file",
+			"large_data.csv",
+			"text/csv",
+			bytes
+		);
+
+		mockMvc
+			.perform(
+				multipart("/api/uploads")
+					.file(file)
+					.contentType(MediaType.MULTIPART_FORM_DATA)
+					.header("X-Test-UserId", userId))
+			.andExpect(status().isContentTooLarge());
 	}
 
 	@Test
