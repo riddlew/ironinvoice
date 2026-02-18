@@ -17,6 +17,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="com.intellij.jpb.FlywayMigrationScript" />
+        <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -26,18 +28,22 @@
   <component name="GitRewordedCommitMessages">
     <option name="onto" value="409e7c93291f6394d8670ecef0acbd61929460e4" />
   </component>
-  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
-  <component name="KubernetesApiProvider"><![CDATA[{
-  "isMigrated": true
-}]]></component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="39mLaQ6clwNpNhdhxzv2QStHimZ" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+    <ConfirmationsSetting value="1" id="Remove" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -59,6 +65,11 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "settings.editor.selected.configurable": "preferences.pluginManager"
+  },
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "postgresql"
+    ]
   }
 }]]></component>
   <component name="RecentsManager">
@@ -74,7 +85,7 @@
       <module name="ironinvoice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dev.riddle.ironinvoice.features.uploads.*" />
+          <option name="PATTERN" value="dev.riddle.ironinvoice.features.uploads.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -100,7 +111,7 @@
       <module name="ironinvoice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dev.riddle.ironinvoice.features.uploads.*" />
+          <option name="PATTERN" value="dev.riddle.ironinvoice.features.uploads.api.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -226,7 +237,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771339142779</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="chore: update .gitignore to exclude IntelliJ creating .ai folder constantly">
+      <option name="closed" value="true" />
+      <created>1771343626813</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1771343626813</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -249,6 +268,11 @@
     <MESSAGE value="test: enhance test coverage for UploadController and UploadService&#10;&#10;- Added new test cases for handling missing files, non-CSV file uploads, unauthorized access, and various error scenarios.&#10;- Refactored existing test cases to handle exceptions explicitly with `throws` declarations." />
     <MESSAGE value="test: add edge case tests for UploadController and update configurations&#10;&#10;- Added test cases for empty file, malformed headers, malformed CSV, and oversized CSV uploads.&#10;- Updated `.idea/workspace.xml` with new run configurations for debugging and test environments." />
     <MESSAGE value="fix: ensure normalized paths in UploadService to prevent path traversal vulnerabilities" />
-    <option name="LAST_COMMIT_MESSAGE" value="fix: ensure normalized paths in UploadService to prevent path traversal vulnerabilities" />
+    <MESSAGE value="chore: update .gitignore to exclude IntelliJ creating .ai folder constantly" />
+    <option name="LAST_COMMIT_MESSAGE" value="chore: update .gitignore to exclude IntelliJ creating .ai folder constantly" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
