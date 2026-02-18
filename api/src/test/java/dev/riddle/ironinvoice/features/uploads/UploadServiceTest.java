@@ -1,5 +1,6 @@
 package dev.riddle.ironinvoice.features.uploads;
 
+import dev.riddle.ironinvoice.features.uploads.application.UploadJobService;
 import dev.riddle.ironinvoice.features.uploads.application.UploadService;
 import dev.riddle.ironinvoice.shared.config.properties.StorageProperties;
 import dev.riddle.ironinvoice.features.uploads.persistence.UploadEntity;
@@ -29,6 +30,9 @@ public class UploadServiceTest {
 	@Mock
 	UploadRepository uploadRepository;
 
+	@Mock
+	UploadJobService uploadJobService;
+
 	UploadService uploadService;
 	StorageProperties storageProperties;
 	UUID userId;
@@ -44,7 +48,8 @@ public class UploadServiceTest {
 		uploadService = new UploadService(
 			uploadRepository,
 			new ObjectMapper(),
-			storageProperties
+			storageProperties,
+			uploadJobService
 		);
 
 		userId = UUID.randomUUID();
@@ -70,8 +75,6 @@ public class UploadServiceTest {
 
 			var result = uploadService.createUpload(userId, file);
 
-			assertEquals(100, result.rowCount());
-			assertTrue(result.headers().contains("email"));
 			verify(uploadRepository, times(1)).save(any());
 		}
 	}
@@ -175,7 +178,8 @@ public class UploadServiceTest {
 		UploadService tempUploadService = new UploadService(
 			uploadRepository,
 			new ObjectMapper(),
-			tempStorageProperties
+			tempStorageProperties,
+			uploadJobService
 		);
 
 		var fileResource = new ClassPathResource("fixtures/uploads/good_data.csv");

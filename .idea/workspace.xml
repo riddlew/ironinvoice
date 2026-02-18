@@ -10,19 +10,27 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="59" />
+    <option name="cachedIndexableFilesCount" value="148" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="com.intellij.jpb.FlywayMigrationScript" />
+        <option value="package-info" />
         <option value="Interface" />
+        <option value="com.intellij.jpb.FlywayMigrationScript" />
+        <option value="Record" />
+        <option value="Enum" />
         <option value="Class" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitRewordedCommitMessages">
@@ -32,6 +40,13 @@
   <component name="KubernetesApiProvider">{
   &quot;isMigrated&quot;: true
 }</component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
   <component name="McpProjectServerCommands">
     <commands />
     <urls />
@@ -49,14 +64,15 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Attach to process.localhost:5005.executor": "ProcessAttachDebug",
     "Docker.Run All.executor": "Run",
     "JUnit.UploadControllerIT.executor": "Run",
     "JUnit.UploadControllerIT.upload_withTooLargeCsv_returns413.executor": "Run",
     "JUnit.UploadServiceTest.executor": "Run",
     "Remote JVM Debug.Debug API Container.executor": "Debug",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "git-widget-placeholder": "feat/file-upload",
-    "last_opened_file_path": "/Users/wmbp/repos/ironinvoice/api/src/test/resources",
+    "git-widget-placeholder": "feat/store-upload-invoice-data",
+    "last_opened_file_path": "/Users/wmbp/repos/ironinvoice/worker/src/main/java/dev/riddle/ironinvoiceworker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -64,6 +80,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
@@ -74,10 +91,21 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/api/src/test/resources" />
+      <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoiceworker" />
+      <recent name="$PROJECT_DIR$/infrastructure/env" />
+      <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoiceworker/upload" />
+      <recent name="$PROJECT_DIR$/shared/src/contracts" />
+      <recent name="$PROJECT_DIR$/shared/contracts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/shared/src/main/java/dev/riddlew/ironinvoiceshared/contracts" />
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/api/src/main/resources/db/migration" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.riddle.ironinvoiceworker.common.exceptions" />
+      <recent name="dev.riddle.ironinvoice.features.invoice.api.dto" />
+      <recent name="dev.riddle.ironinvoice.features.invoice.persistence" />
     </key>
   </component>
   <component name="RunManager" selected="Docker.Run All">
@@ -85,7 +113,7 @@
       <module name="ironinvoice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dev.riddle.ironinvoice.features.uploads.api.*" />
+          <option name="PATTERN" value="dev.riddle.ironinvoiceshared.enums.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -111,7 +139,7 @@
       <module name="ironinvoice" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="dev.riddle.ironinvoice.features.uploads.api.*" />
+          <option name="PATTERN" value="dev.riddle.ironinvoiceshared.enums.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -147,6 +175,13 @@
       </RunnerSettings>
       <method v="2" />
     </configuration>
+    <configuration name="IronInvoiceWorkerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ironinvoiceworker" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dev.riddle.ironinvoiceworker.IronInvoiceWorkerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="IroninvoiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="ironinvoice" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="dev.riddle.ironinvoice.IroninvoiceApplication" />
@@ -179,6 +214,7 @@
       <item itemvalue="JUnit.UploadControllerIT" />
       <item itemvalue="JUnit.UploadServiceTest" />
       <item itemvalue="Remote JVM Debug.Debug API Container" />
+      <item itemvalue="Spring Boot.IronInvoiceWorkerApplication" />
       <item itemvalue="Spring Boot.IroninvoiceApplication" />
     </list>
     <recent_temporary>
@@ -245,7 +281,39 @@
       <option name="project" value="LOCAL" />
       <updated>1771343626813</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="WIP: templates">
+      <option name="closed" value="true" />
+      <created>1771439417128</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1771439417128</updated>
+    </task>
+    <task id="LOCAL-00008" summary="WIP: uploads 1">
+      <option name="closed" value="true" />
+      <created>1771440993579</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1771440993579</updated>
+    </task>
+    <task id="LOCAL-00009" summary="WIP: invoice entities, repositories, and migrations">
+      <option name="closed" value="true" />
+      <created>1771506893441</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1771506893441</updated>
+    </task>
+    <task id="LOCAL-00010" summary="WIP: invoice entities, repositories, and migrations">
+      <option name="closed" value="true" />
+      <created>1771507237306</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1771507237306</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -269,7 +337,11 @@
     <MESSAGE value="test: add edge case tests for UploadController and update configurations&#10;&#10;- Added test cases for empty file, malformed headers, malformed CSV, and oversized CSV uploads.&#10;- Updated `.idea/workspace.xml` with new run configurations for debugging and test environments." />
     <MESSAGE value="fix: ensure normalized paths in UploadService to prevent path traversal vulnerabilities" />
     <MESSAGE value="chore: update .gitignore to exclude IntelliJ creating .ai folder constantly" />
-    <option name="LAST_COMMIT_MESSAGE" value="chore: update .gitignore to exclude IntelliJ creating .ai folder constantly" />
+    <MESSAGE value="WIP: templates" />
+    <MESSAGE value="WIP: entities, migrations, and repositories" />
+    <MESSAGE value="WIP: uploads 1" />
+    <MESSAGE value="WIP: invoice entities, repositories, and migrations" />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP: invoice entities, repositories, and migrations" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

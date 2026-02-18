@@ -6,8 +6,8 @@ import java.util.UUID;
 
 public record UploadResult(
 	UUID id,
-	String originalFilename,
-	List<String> headers,
-	int rowCount,
-	List<Map<String, String>> sampleRows
+	String originalFilename
+//	List<String> headers,
+//	int rowCount,
+//	List<Map<String, String>> sampleRows
 ) {}

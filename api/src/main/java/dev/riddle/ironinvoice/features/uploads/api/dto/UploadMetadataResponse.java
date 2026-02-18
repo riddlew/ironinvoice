@@ -7,7 +7,5 @@ import java.util.UUID;
 public record UploadMetadataResponse(
 	UUID id,
 	String originalFilename,
-	int rowCount,
-	List<String> headers,
 	OffsetDateTime createdAt
 ) {}

@@ -39,6 +39,8 @@ services:
     container_name: ironinvoice-api
     env_file:
       - infrastructure/env/api.env
+    volumes:
+      - uploads:/data/uploads
     ports:
       - "6000:8080"
       - "5005:5005" # Remote debugging port
@@ -46,3 +48,31 @@ services:
     depends_on:
       postgres:
         condition: service_healthy
+
+  worker:
+    build:
+      dockerfile: infrastructure/docker/worker.Dockerfile
+    container_name: ironinvoice-worker
+    env_file:
+      - infrastructure/env/worker.env
+    volumes:
+      - uploads:/data/uploads
+    ports:
+      - "6001:8080"
+      - "5006:5005" # Remote debugging port
+    restart: always
+    depends_on:
+      - rabbitmq
+
+  rabbitmq:
+    container_name: ironinvoice-rabbitmq
+    image: rabbitmq:4.2.4-management
+    environment:
+      RABBITMQ_DEFAULT_USER: dev
+      RABBITMQ_DEFAULT_PASS: dev
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  uploads:

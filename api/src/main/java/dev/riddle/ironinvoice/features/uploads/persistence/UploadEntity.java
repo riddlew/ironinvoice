@@ -1,15 +1,13 @@
 package dev.riddle.ironinvoice.features.uploads.persistence;
 
+import dev.riddle.ironinvoiceshared.uploads.enums.UploadStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
-import org.hibernate.type.SqlTypes;
 
 import java.time.OffsetDateTime;
-import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -43,16 +41,11 @@ public class UploadEntity {
 	@Setter
 	private String storageKey;
 
-	@Column(name = "row_count", nullable = false)
+	@Column(name = "status", nullable = false)
+	@Enumerated(EnumType.STRING)
 	@Getter
 	@Setter
-	private int rowCount;
-
-	@Column(name = "headers_json", nullable = false, columnDefinition = "jsonb")
-	@JdbcTypeCode(SqlTypes.JSON)
-	@Getter
-	@Setter
-	private List<String> headersJson;
+	private UploadStatus status;
 
 	@CreationTimestamp
 	@Column(name = "created_at", nullable = false)

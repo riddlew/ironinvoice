@@ -8,7 +8,7 @@ import java.nio.file.Path;
 @ConfigurationProperties(prefix = "app.storage")
 public record StorageProperties(
 
-	@DefaultValue("./data/uploads")
+	@DefaultValue("/data/uploads")
 	Path uploadsRoot,
 
 	@DefaultValue("10485760")

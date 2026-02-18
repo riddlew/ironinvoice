@@ -32,10 +32,7 @@ public class UploadController {
 		return ResponseEntity.ok(
 			new UploadResponse(
 				result.id(),
-				result.originalFilename(),
-				result.rowCount(),
-				result.headers(),
-				result.sampleRows()
+				result.originalFilename()
 			)
 		);
 	}
@@ -51,8 +48,6 @@ public class UploadController {
 			new UploadMetadataResponse(
 				metadata.id(),
 				metadata.originalFilename(),
-				metadata.rowCount(),
-				metadata.headers(),
 				metadata.createdAt()
 			)
 		);
