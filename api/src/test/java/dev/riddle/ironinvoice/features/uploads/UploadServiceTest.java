@@ -1,8 +1,9 @@
 package dev.riddle.ironinvoice.features.uploads;
 
-import dev.riddle.ironinvoice.config.properties.StorageProperties;
-import dev.riddle.ironinvoice.persistence.entity.UploadEntity;
-import dev.riddle.ironinvoice.persistence.repository.UploadRepository;
+import dev.riddle.ironinvoice.features.uploads.application.UploadService;
+import dev.riddle.ironinvoice.shared.config.properties.StorageProperties;
+import dev.riddle.ironinvoice.features.uploads.persistence.UploadEntity;
+import dev.riddle.ironinvoice.features.uploads.persistence.UploadRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
