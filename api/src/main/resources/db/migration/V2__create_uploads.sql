@@ -4,8 +4,7 @@ CREATE TABLE uploads
 	created_by        UUID         NOT NULL,
 	original_filename VARCHAR(255) NOT NULL,
 	storage_key       VARCHAR(255) NOT NULL,
-	row_count         INTEGER      NOT NULL,
-	headers_json      JSONB        NOT NULL,
+	status            VARCHAR(255) NOT NULL,
 	created_at        TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 	updated_at        TIMESTAMP WITHOUT TIME ZONE NOT NULL,
 	CONSTRAINT pk_uploads PRIMARY KEY (id)

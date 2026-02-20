@@ -1,25 +1,19 @@
 package dev.riddle.ironinvoice.features.uploads.application;
 
+import dev.riddle.ironinvoiceshared.uploads.enums.UploadStatus;
 import dev.riddle.ironinvoice.shared.config.properties.StorageProperties;
-import dev.riddle.ironinvoice.features.uploads.api.dto.CsvScan;
 import dev.riddle.ironinvoice.features.uploads.api.dto.UploadMetadata;
 import dev.riddle.ironinvoice.features.uploads.api.dto.UploadResult;
 import dev.riddle.ironinvoice.features.uploads.persistence.UploadEntity;
 import dev.riddle.ironinvoice.features.uploads.persistence.UploadRepository;
 import lombok.RequiredArgsConstructor;
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVParser;
-import org.apache.commons.csv.CSVRecord;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.server.ResponseStatusException;
 import tools.jackson.databind.ObjectMapper;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -38,6 +32,7 @@ public class UploadService {
 	private final UploadRepository uploadRepository;
 	private final ObjectMapper objectMapper;
 	private final StorageProperties storageProperties;
+	private final UploadJobService uploadJobService;
 
 	public UploadResult createUpload(UUID userId, MultipartFile file) {
 		validateFile(file);
@@ -48,23 +43,26 @@ public class UploadService {
 
 		String storageKey = generateStorageKey(originalFilename);
 		Path storedPath = storeFile(file, storageKey);
-		CsvScan scan = scanCsv(storedPath);
+//		CsvScan scan = scanCsv(storedPath);
 
 		UploadEntity uploadEntity = new UploadEntity();
 		uploadEntity.setCreatedBy(userId);
 		uploadEntity.setOriginalFilename(originalFilename);
 		uploadEntity.setStorageKey(storageKey);
-		uploadEntity.setRowCount(scan.rowCount());
-		uploadEntity.setHeadersJson(scan.headers());
+		uploadEntity.setStatus(UploadStatus.PENDING);
+//		uploadEntity.setRowCount(scan.rowCount());
+//		uploadEntity.setHeadersJson(scan.headers());
 
 		UploadEntity savedUploadEntity = uploadRepository.save(uploadEntity);
 
+		uploadJobService.processUpload(savedUploadEntity);
+
 		return new UploadResult(
 			savedUploadEntity.getId(),
-			savedUploadEntity.getOriginalFilename(),
-			scan.headers(),
-			savedUploadEntity.getRowCount(),
-			scan.sampleRows()
+			savedUploadEntity.getOriginalFilename()
+//			scan.headers()
+//			savedUploadEntity.getRowCount(),
+//			scan.sampleRows()
 		);
 	}
 
@@ -76,8 +74,8 @@ public class UploadService {
 		return new UploadMetadata(
 			upload.getId(),
 			upload.getOriginalFilename(),
-			upload.getHeadersJson(),
-			upload.getRowCount(),
+//			upload.getHeadersJson(),
+//			upload.getRowCount(),
 			upload.getCreatedAt()
 		);
 	}
@@ -145,51 +143,4 @@ public class UploadService {
 		}
 	}
 
-	private CsvScan scanCsv(Path path) {
-		try (
-			BufferedReader reader = new BufferedReader(
-				new InputStreamReader(
-					Files.newInputStream(path),
-					StandardCharsets.UTF_8
-				));
-
-			CSVParser parser = CSVFormat.DEFAULT
-				.builder()
-				.setHeader()
-				.setSkipHeaderRecord(true)
-				.setTrim(true)
-				.build()
-				.parse(reader)
-		) {
-			List<String> headers = new ArrayList<>(parser.getHeaderMap().keySet());
-			headers.removeIf(header -> header == null || header.isBlank());
-
-			if (headers.isEmpty()) {
-				throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "CSV file must include valid headers");
-			}
-
-			int rowCount = 0;
-			List<Map<String, String>> sample = new ArrayList<>();
-
-			for (CSVRecord record : parser) {
-				rowCount++;
-
-				if (sample.size() < storageProperties.sampleLimit()) {
-					Map<String, String> row = new LinkedHashMap<>();
-
-					for (String header : headers) {
-						row.put(header, record.isMapped(header) ? record.get(header) : "");
-					}
-
-					sample.add(row);
-				}
-			}
-
-			return new CsvScan(headers, rowCount, sample);
-		} catch (IllegalArgumentException ex) {
-			throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid file");
-		} catch (IOException ex) {
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR, "Failed to parse CSV file");
-		}
-	}
 }
