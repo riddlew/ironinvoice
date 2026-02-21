@@ -4,24 +4,27 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="9c8aff82-d118-4a62-a769-8d6689c5dd2c" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="148" />
+    <option name="cachedIndexableFilesCount" value="156" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="Interface" />
-        <option value="com.intellij.jpb.FlywayMigrationScript" />
-        <option value="Record" />
         <option value="Enum" />
+        <option value="com.intellij.jpb.FlywayMigrationScript" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -34,7 +37,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitRewordedCommitMessages">
-    <option name="onto" value="409e7c93291f6394d8670ecef0acbd61929460e4" />
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="WIP: invoice entities, repositories, and migrations" />
+        <option name="rewordedMessage" value="feat: introduce shared module, worker module, and RabbitMQ integration&#10;&#10;- Added a `shared` module for reusable components and contracts.&#10;- Introduced a `worker` module for asynchronous background processing.&#10;- Implemented RabbitMQ configuration and messaging for upload processing.&#10;- Refactored `UploadService` and related DTOs to streamline processing using `UploadJobService`.&#10;- Updated Docker setup (`docker-compose.yml`) to include RabbitMQ, worker service, and shared volume for uploads.&#10;- Refactored entities, migrations, and tests to align with the new shared module." />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="74e97f7867a85ef69ef7df5be64c083de82d6b89" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -64,28 +74,40 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Attach to process.localhost:5005.executor": "ProcessAttachDebug",
     "Docker.Run All.executor": "Run",
     "JUnit.UploadControllerIT.executor": "Run",
     "JUnit.UploadControllerIT.upload_withTooLargeCsv_returns413.executor": "Run",
     "JUnit.UploadServiceTest.executor": "Run",
     "Remote JVM Debug.Debug API Container.executor": "Debug",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "git-widget-placeholder": "feat/store-upload-invoice-data",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "feat/mappings",
+    "kotlin-language-version-configured": "true",
     "last_opened_file_path": "/Users/wmbp/repos/ironinvoice/worker/src/main/java/dev/riddle/ironinvoiceworker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "postgresql"
+    ],
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
 }]]></component>
@@ -98,15 +120,25 @@
       <recent name="$PROJECT_DIR$/shared/contracts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api/src/main/resources/db/migration" />
       <recent name="$PROJECT_DIR$/shared/src/main/java/dev/riddlew/ironinvoiceshared/contracts" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/api/src/main/resources/db/migration" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.riddle.ironinvoice.features.mappings.api.dto.mapping_config.rules" />
+      <recent name="dev.riddle.ironinvoice.features.mappings.api.dto.mapping_config.sources" />
       <recent name="dev.riddle.ironinvoiceworker.common.exceptions" />
       <recent name="dev.riddle.ironinvoice.features.invoice.api.dto" />
       <recent name="dev.riddle.ironinvoice.features.invoice.persistence" />
     </key>
+  </component>
+  <component name="RubyModuleManagerSettings">
+    <option name="blackListedRootsPaths">
+      <list>
+        <option value="$PROJECT_DIR$/shared" />
+        <option value="$PROJECT_DIR$/worker" />
+      </list>
+    </option>
   </component>
   <component name="RunManager" selected="Docker.Run All">
     <configuration name="UploadControllerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -312,6 +344,14 @@
       <option name="presentableId" value="LOCAL-00010" />
       <option name="project" value="LOCAL" />
       <updated>1771507237306</updated>
+    </task>
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c8aff82-d118-4a62-a769-8d6689c5dd2c" name="Changes" comment="" />
+      <created>1771620811272</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771620811272</updated>
+      <workItem from="1771620811639" duration="20790000" />
     </task>
     <option name="localTasksCounter" value="11" />
     <servers />

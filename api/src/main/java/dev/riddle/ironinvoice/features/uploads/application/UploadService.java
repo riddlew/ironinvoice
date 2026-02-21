@@ -1,5 +1,6 @@
 package dev.riddle.ironinvoice.features.uploads.application;
 
+import dev.riddle.ironinvoice.features.uploads.api.dto.CreateUploadJobRequest;
 import dev.riddle.ironinvoiceshared.uploads.enums.UploadStatus;
 import dev.riddle.ironinvoice.shared.config.properties.StorageProperties;
 import dev.riddle.ironinvoice.features.uploads.api.dto.UploadMetadata;
@@ -35,6 +36,10 @@ public class UploadService {
 	private final UploadJobService uploadJobService;
 
 	public UploadResult createUpload(UUID userId, MultipartFile file) {
+		return createUpload(userId, file, null, null);
+	}
+
+	public UploadResult createUpload(UUID userId, MultipartFile file, UUID mappingId, UUID templateId) {
 		validateFile(file);
 
 		String originalFilename = Optional
@@ -53,9 +58,21 @@ public class UploadService {
 //		uploadEntity.setRowCount(scan.rowCount());
 //		uploadEntity.setHeadersJson(scan.headers());
 
+		if (mappingId != null) {
+			// TODO: validate from db that it's a valid mapping and owned by the user. If it isn't, throw.
+		}
+
+		if (templateId != null) {
+			// TODO: validate from db that it's a valid mapping and owned by the user. If it isn't, throw.
+		}
+
 		UploadEntity savedUploadEntity = uploadRepository.save(uploadEntity);
 
-		uploadJobService.processUpload(savedUploadEntity);
+		uploadJobService.processUpload(new CreateUploadJobRequest(
+			uploadEntity,
+			mappingId,
+			templateId
+		));
 
 		return new UploadResult(
 			savedUploadEntity.getId(),

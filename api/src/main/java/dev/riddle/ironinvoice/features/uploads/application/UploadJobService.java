@@ -1,6 +1,6 @@
 package dev.riddle.ironinvoice.features.uploads.application;
 
-import dev.riddle.ironinvoice.features.uploads.persistence.UploadEntity;
+import dev.riddle.ironinvoice.features.uploads.api.dto.CreateUploadJobRequest;
 import dev.riddle.ironinvoiceshared.uploads.contracts.UploadJobMessage;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -12,16 +12,18 @@ public class UploadJobService {
 
 	private final RabbitTemplate rabbitTemplate;
 
-	public void processUpload(UploadEntity upload) {
+	public void processUpload(CreateUploadJobRequest request) {
 		rabbitTemplate
 			.convertAndSend(
 				"invoice-upload-exchange",
-				"invoice.upload." + upload.getId(),
+				"invoice.upload." + request.uploadEntity().getId(),
 				new UploadJobMessage(
-					upload.getId(),
-					upload.getCreatedBy(),
-					upload.getStorageKey(),
-					upload.getCreatedAt()
+					request.uploadEntity().getId(),
+					request.mappingId(),
+					request.templateId(),
+					request.uploadEntity().getCreatedBy(),
+					request.uploadEntity().getStorageKey(),
+					request.uploadEntity().getCreatedAt()
 				));
 	}
 }

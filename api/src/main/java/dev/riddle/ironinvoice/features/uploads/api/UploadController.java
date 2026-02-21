@@ -1,17 +1,12 @@
 package dev.riddle.ironinvoice.features.uploads.api;
 
+import dev.riddle.ironinvoice.features.uploads.api.dto.*;
 import dev.riddle.ironinvoice.features.uploads.application.UploadService;
-import dev.riddle.ironinvoice.features.uploads.api.dto.UploadMetadata;
-import dev.riddle.ironinvoice.features.uploads.api.dto.UploadMetadataResponse;
-import dev.riddle.ironinvoice.features.uploads.api.dto.UploadResponse;
-import dev.riddle.ironinvoice.features.uploads.api.dto.UploadResult;
 import dev.riddle.ironinvoice.shared.security.CurrentUser;
-import jakarta.validation.constraints.NotNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
@@ -21,13 +16,14 @@ import java.util.UUID;
 public class UploadController {
 
 	private final UploadService uploadService;
+	private final MappingService mappingService;
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<UploadResponse> upload(
-		@RequestPart("file") @NotNull MultipartFile file
+		CreateUploadRequest request
 	) {
 		UUID userId = CurrentUser.requireId();
-		UploadResult result = uploadService.createUpload(userId, file);
+		UploadResult result = uploadService.createUpload(userId, request.file(), request.mappingId(), request.templateID());
 
 		return ResponseEntity.ok(
 			new UploadResponse(

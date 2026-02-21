@@ -6,6 +6,8 @@ import java.util.UUID;
 
 public record UploadJobMessage(
 	UUID uploadId,
+	UUID mappingId,
+	UUID templateId,
 	UUID createdBy,
 	String storageKey,
 	OffsetDateTime createdAt

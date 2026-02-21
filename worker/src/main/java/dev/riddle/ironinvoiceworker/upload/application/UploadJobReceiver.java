@@ -31,6 +31,14 @@ public class UploadJobReceiver {
 			upload.setStatus(UploadStatus.PROCESSING);
 			uploadRepository.save(upload);
 
+			if (request.mappingId() != null) {
+				// TODO: validate from db that it's a valid mapping and owned by the user. If it isn't, throw.
+			}
+
+			if (request.templateId() != null) {
+				// TODO: validate from db that it's a valid mapping and owned by the user. If it isn't, throw.
+			}
+
 			CsvScan data = uploadJobService.parseCsv(upload.getStorageKey());
 
 			InvoiceEntity result = invoiceService.createInvoice(new CreateInvoiceRequest(
