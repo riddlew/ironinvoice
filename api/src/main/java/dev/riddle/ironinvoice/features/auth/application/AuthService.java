@@ -4,7 +4,7 @@ import dev.riddle.ironinvoice.features.auth.api.dto.*;
 import dev.riddle.ironinvoice.features.auth.persistence.RefreshTokenEntity;
 import dev.riddle.ironinvoice.features.users.persistence.UserEntity;
 import dev.riddle.ironinvoice.features.users.persistence.UserRepository;
-import dev.riddle.ironinvoice.shared.security.AuthUser;
+import dev.riddle.ironinvoice.security.AuthUser;
 import dev.riddle.ironinvoice.features.auth.persistence.RefreshTokenRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

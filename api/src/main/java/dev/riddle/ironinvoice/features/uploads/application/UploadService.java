@@ -2,7 +2,7 @@ package dev.riddle.ironinvoice.features.uploads.application;
 
 import dev.riddle.ironinvoice.features.uploads.api.dto.CreateUploadJobRequest;
 import dev.riddle.ironinvoiceshared.uploads.enums.UploadStatus;
-import dev.riddle.ironinvoice.shared.config.properties.StorageProperties;
+import dev.riddle.ironinvoice.config.properties.StorageProperties;
 import dev.riddle.ironinvoice.features.uploads.api.dto.UploadMetadata;
 import dev.riddle.ironinvoice.features.uploads.api.dto.UploadResult;
 import dev.riddle.ironinvoice.features.uploads.persistence.UploadEntity;

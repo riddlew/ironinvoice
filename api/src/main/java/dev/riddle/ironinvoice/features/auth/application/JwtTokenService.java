@@ -1,6 +1,6 @@
 package dev.riddle.ironinvoice.features.auth.application;
 
-import dev.riddle.ironinvoice.shared.security.AuthUser;
+import dev.riddle.ironinvoice.security.AuthUser;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;

@@ -2,9 +2,9 @@ package dev.riddle.ironinvoiceworker.upload.application;
 
 import dev.riddle.ironinvoiceshared.uploads.contracts.CsvScan;
 import dev.riddle.ironinvoiceshared.invoice.InvoiceRowDetails;
-import dev.riddle.ironinvoiceworker.shared.config.properties.StorageProperties;
-import dev.riddle.ironinvoiceworker.shared.exceptions.InvalidCsvException;
-import dev.riddle.ironinvoiceworker.shared.exceptions.UploadNotFoundException;
+import dev.riddle.ironinvoiceworker.config.properties.StorageProperties;
+import dev.riddle.ironinvoiceworker.upload.application.exceptions.InvalidCsvException;
+import dev.riddle.ironinvoiceworker.upload.application.exceptions.UploadNotFoundException;
 import dev.riddle.ironinvoiceworker.upload.persistence.UploadEntity;
 import dev.riddle.ironinvoiceworker.upload.persistence.UploadRepository;
 import lombok.RequiredArgsConstructor;

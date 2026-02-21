@@ -1,4 +1,4 @@
-package dev.riddle.ironinvoiceworker.shared.exceptions;
+package dev.riddle.ironinvoiceworker.upload.application.exceptions;
 
 public class InvalidCsvException extends Exception {
 	public enum Reason {

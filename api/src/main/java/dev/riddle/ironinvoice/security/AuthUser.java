@@ -1,4 +1,4 @@
-package dev.riddle.ironinvoice.shared.security;
+package dev.riddle.ironinvoice.security;
 
 import java.util.UUID;
 

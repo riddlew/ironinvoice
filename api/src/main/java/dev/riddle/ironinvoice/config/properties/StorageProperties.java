@@ -1,4 +1,4 @@
-package dev.riddle.ironinvoice.shared.config.properties;
+package dev.riddle.ironinvoice.config.properties;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.bind.DefaultValue;

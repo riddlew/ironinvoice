@@ -1,4 +1,4 @@
-package dev.riddle.ironinvoiceworker.shared.config;
+package dev.riddle.ironinvoiceworker.config;
 
 import dev.riddle.ironinvoiceworker.upload.application.UploadJobReceiver;
 import org.springframework.amqp.core.Binding;

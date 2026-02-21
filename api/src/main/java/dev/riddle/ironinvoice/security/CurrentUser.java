@@ -1,4 +1,4 @@
-package dev.riddle.ironinvoice.shared.security;
+package dev.riddle.ironinvoice.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

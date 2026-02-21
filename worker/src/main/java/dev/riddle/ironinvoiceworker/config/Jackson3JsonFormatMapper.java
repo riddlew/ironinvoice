@@ -1,4 +1,4 @@
-package dev.riddle.ironinvoiceworker.shared.config;
+package dev.riddle.ironinvoiceworker.config;
 
 import org.hibernate.type.descriptor.WrapperOptions;
 import org.hibernate.type.descriptor.java.JavaType;

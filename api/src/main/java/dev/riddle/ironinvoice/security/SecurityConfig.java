@@ -1,4 +1,4 @@
-package dev.riddle.ironinvoice.shared.security;
+package dev.riddle.ironinvoice.security;
 
 import dev.riddle.ironinvoice.features.auth.application.JwtTokenService;
 import dev.riddle.ironinvoice.features.users.persistence.UserRepository;

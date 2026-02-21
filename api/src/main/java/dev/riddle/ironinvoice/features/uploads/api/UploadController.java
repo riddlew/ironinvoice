@@ -2,7 +2,7 @@ package dev.riddle.ironinvoice.features.uploads.api;
 
 import dev.riddle.ironinvoice.features.uploads.api.dto.*;
 import dev.riddle.ironinvoice.features.uploads.application.UploadService;
-import dev.riddle.ironinvoice.shared.security.CurrentUser;
+import dev.riddle.ironinvoice.security.CurrentUser;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;

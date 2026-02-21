@@ -1,9 +1,9 @@
 package dev.riddle.ironinvoice.features.uploads;
 
-import dev.riddle.ironinvoice.shared.config.properties.StorageProperties;
+import dev.riddle.ironinvoice.config.properties.StorageProperties;
 import dev.riddle.ironinvoice.features.users.persistence.UserEntity;
 import dev.riddle.ironinvoice.features.users.persistence.UserRepository;
-import dev.riddle.ironinvoice.shared.security.AuthUser;
+import dev.riddle.ironinvoice.security.AuthUser;
 import dev.riddle.ironinvoice.features.auth.application.JwtTokenService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
