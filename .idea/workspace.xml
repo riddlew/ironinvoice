@@ -13,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="156" />
+    <option name="cachedIndexableFilesCount" value="183" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -23,8 +23,8 @@
         <option value="Enum" />
         <option value="com.intellij.jpb.FlywayMigrationScript" />
         <option value="Interface" />
-        <option value="Class" />
         <option value="Record" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -351,9 +351,25 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1771620811272</updated>
-      <workItem from="1771620811639" duration="20790000" />
+      <workItem from="1771620811639" duration="24224000" />
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced `mappingId` and `templateId` to upload flow for additional context.&#10;- Added new DTOs (`CreateUploadRequest`, `CreateUploadJobRequest`) to streamline data handling.&#10;- Refactored `UploadService` and `UploadJobService` to process uploads with mapping and template IDs.&#10;- Updated `UploadJobMessage` to include `mappingId` and `templateId`.&#10;- Adjusted package structure and configuration to align with updated shared module.">
+      <option name="closed" value="true" />
+      <created>1771709221078</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1771709221078</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: add mapping creation and persistence&#10;&#10;- Implemented `MappingService` to handle mapping creation using `CreateMappingCommand`.&#10;- Added DTOs (`CreateMappingCommand`, `MappingConfig`, `MappingField`, `MappingSource`, etc.) for mapping structure.&#10;- Created `MappingEntity` and `MappingRepository` for persistence with schema and config handling.&#10;- Introduced database migration to create `mappings` table">
+      <option name="closed" value="true" />
+      <created>1771709599141</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1771709599141</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -364,7 +380,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feat/mappings" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -381,7 +409,10 @@
     <MESSAGE value="WIP: entities, migrations, and repositories" />
     <MESSAGE value="WIP: uploads 1" />
     <MESSAGE value="WIP: invoice entities, repositories, and migrations" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: invoice entities, repositories, and migrations" />
+    <MESSAGE value="Merge pull request #4 from riddlew/feat/upload-and-create-invoice&#10;&#10;feat: introduce shared module, worker module, and RabbitMQ integration" />
+    <MESSAGE value="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced `mappingId` and `templateId` to upload flow for additional context.&#10;- Added new DTOs (`CreateUploadRequest`, `CreateUploadJobRequest`) to streamline data handling.&#10;- Refactored `UploadService` and `UploadJobService` to process uploads with mapping and template IDs.&#10;- Updated `UploadJobMessage` to include `mappingId` and `templateId`.&#10;- Adjusted package structure and configuration to align with updated shared module." />
+    <MESSAGE value="feat: add mapping creation and persistence&#10;&#10;- Implemented `MappingService` to handle mapping creation using `CreateMappingCommand`.&#10;- Added DTOs (`CreateMappingCommand`, `MappingConfig`, `MappingField`, `MappingSource`, etc.) for mapping structure.&#10;- Created `MappingEntity` and `MappingRepository` for persistence with schema and config handling.&#10;- Introduced database migration to create `mappings` table" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat: add mapping creation and persistence&#10;&#10;- Implemented `MappingService` to handle mapping creation using `CreateMappingCommand`.&#10;- Added DTOs (`CreateMappingCommand`, `MappingConfig`, `MappingField`, `MappingSource`, etc.) for mapping structure.&#10;- Created `MappingEntity` and `MappingRepository` for persistence with schema and config handling.&#10;- Introduced database migration to create `mappings` table" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

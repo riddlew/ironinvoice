@@ -10,5 +10,5 @@ public record CreateUploadRequest(
 	MultipartFile file,
 
 	UUID mappingId,
-	UUID templateID
+	UUID templateId
 ) {}

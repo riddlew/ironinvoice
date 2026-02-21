@@ -23,7 +23,12 @@ public class UploadController {
 		CreateUploadRequest request
 	) {
 		UUID userId = CurrentUser.requireId();
-		UploadResult result = uploadService.createUpload(userId, request.file(), request.mappingId(), request.templateID());
+
+		if (request.mappingId() != null) {
+			mappingService.getMappingbyId(request.mappingId(), userId);
+		}
+
+		UploadResult result = uploadService.createUpload(userId, request.file(), request.mappingId(), request.templateId());
 
 		return ResponseEntity.ok(
 			new UploadResponse(

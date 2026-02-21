@@ -1,6 +1,7 @@
 package dev.riddle.ironinvoice.features.mappings.application;
 
 import dev.riddle.ironinvoice.features.mappings.api.dto.CreateMappingCommand;
+import dev.riddle.ironinvoice.features.mappings.application.exceptions.MappingNotFoundException;
 import dev.riddle.ironinvoice.features.mappings.persistence.MappingEntity;
 import dev.riddle.ironinvoice.features.mappings.persistence.MappingRepository;
 import lombok.RequiredArgsConstructor;
@@ -22,5 +23,11 @@ public class MappingService {
 		mapping.setConfig(command.config());
 
 		return mappingRepository.save(mapping);
+	}
+
+	public MappingEntity getMappingbyId(UUID mappingId, UUID userId) {
+		return mappingRepository
+			.getMappingByIdAndCreatedBy(mappingId, userId)
+			.orElseThrow(() -> new MappingNotFoundException(mappingId));
 	}
 }
