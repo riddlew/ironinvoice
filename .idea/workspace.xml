@@ -127,11 +127,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.riddle.ironinvoice.api.config.seeders" />
       <recent name="dev.riddle.ironinvoice.api.error.handlers" />
       <recent name="dev.riddle.ironinvoice.features.uploads.application.exceptions" />
       <recent name="dev.riddle.ironinvoice.features.mappings.api.dto.mapping_config.rules" />
       <recent name="dev.riddle.ironinvoice.features.mappings.api.dto.mapping_config.sources" />
-      <recent name="dev.riddle.ironinvoiceworker.common.exceptions" />
     </key>
   </component>
   <component name="RubyModuleManagerSettings">
@@ -380,7 +380,7 @@
       <option name="presentableId" value="Default" />
       <updated>1771620811272</updated>
       <workItem from="1771620811639" duration="25025000" />
-      <workItem from="1771718151688" duration="5765000" />
+      <workItem from="1771718151688" duration="8845000" />
     </task>
     <task id="LOCAL-00011" summary="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced `mappingId` and `templateId` to upload flow for additional context.&#10;- Added new DTOs (`CreateUploadRequest`, `CreateUploadJobRequest`) to streamline data handling.&#10;- Refactored `UploadService` and `UploadJobService` to process uploads with mapping and template IDs.&#10;- Updated `UploadJobMessage` to include `mappingId` and `templateId`.&#10;- Adjusted package structure and configuration to align with updated shared module.">
       <option name="closed" value="true" />
@@ -438,7 +438,39 @@
       <option name="project" value="LOCAL" />
       <updated>1771723795679</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure.">
+      <option name="closed" value="true" />
+      <created>1771724841301</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1771724841301</updated>
+    </task>
+    <task id="LOCAL-00019" summary="refactor: remove `@Setter` and ability to set schema&#10;&#10;Schema is auto-generated and should not be set manually.&#10;&#10;- Removed unused `@Setter` annotation from `schema` field.">
+      <option name="closed" value="true" />
+      <created>1771725470845</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1771725470845</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat: add seeders for users and mapping configuration&#10;&#10;- Seeders will only run in non-production environments.">
+      <option name="closed" value="true" />
+      <created>1771725552393</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1771725552393</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix: update package reference for `json_format_mapper` in worker `application.yml`">
+      <option name="closed" value="true" />
+      <created>1771726232994</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1771726232994</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -484,7 +516,11 @@
     <MESSAGE value="feat: add mapping validation to upload process&#10;&#10;- Introduced `getMappingById` method in `MappingService` to validate and fetch user-specific mappings during uploads.&#10;- Added `MappingNotFoundException` to handle missing mappings.&#10;- Created `MappingExceptionHandler` to provide error responses for mapping-related errors.&#10;- Updated `UploadController` to validate `mappingId` in the upload request.&#10;- Introduced `ApiError` for standardized error responses." />
     <MESSAGE value="refactor: move shared package components to feature-specific packages&#10;&#10;- Restructured `shared` package components into appropriate feature-specific packages for better organization.&#10;- Updated imports and references across `api` and `worker` modules to reflect the new package structure." />
     <MESSAGE value="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure." />
-    <option name="LAST_COMMIT_MESSAGE" value="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure." />
+    <MESSAGE value="refactor: remove `@Setter` and ability to set schema&#10;&#10;Schema is auto-generated and should not be set manually.&#10;&#10;- Removed unused `@Setter` annotation from `schema` field." />
+    <MESSAGE value="feat: add seeders for users and mapping configuration&#10;&#10;- Seeders will only run in non-production environments." />
+    <MESSAGE value="fix: update package reference for `json_format_mapper` in worker `application.yml`" />
+    <MESSAGE value="fixup! feat: add seeders for users and mapping configuration" />
+    <option name="LAST_COMMIT_MESSAGE" value="fixup! feat: add seeders for users and mapping configuration" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
