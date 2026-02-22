@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -31,5 +32,10 @@ public class MappingService {
 		return mappingRepository
 			.getByIdAndCreatedBy(mappingId, userId)
 			.orElseThrow(() -> new MappingNotFoundException(mappingId));
+	}
+
+	@Transactional
+	public List<MappingEntity> getMappingsByUserId(UUID userId) {
+		return mappingRepository.findAllByCreatedBy(userId);
 	}
 }
