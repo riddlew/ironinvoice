@@ -1,6 +1,7 @@
 package dev.riddle.ironinvoice.api.features.mappings.api;
 
 import dev.riddle.ironinvoice.api.features.mappings.api.dto.MappingResponse;
+import dev.riddle.ironinvoice.api.features.mappings.api.mapper.MappingMapper;
 import dev.riddle.ironinvoice.api.features.mappings.application.MappingService;
 import dev.riddle.ironinvoice.api.security.CurrentUser;
 import dev.riddle.ironinvoice.shared.mappings.persistence.MappingEntity;
@@ -17,6 +18,7 @@ import java.util.UUID;
 public class MappingController {
 
 	private final MappingService mappingService;
+	private final MappingMapper mapper;
 
 	@GetMapping
 	public ResponseEntity<List<MappingResponse>> getMappings() {
@@ -27,12 +29,7 @@ public class MappingController {
 		return ResponseEntity
 			.ok(mappings
 				.stream()
-				.map(mapping -> new MappingResponse(
-					mapping.getId(),
-					mapping.getTemplateId(),
-					mapping.getName(),
-					mapping.getSchema(),
-					mapping.getConfig()))
+				.map(mapper::toResponse)
 				.toList());
 	}
 
@@ -44,11 +41,6 @@ public class MappingController {
 
 		MappingEntity mapping = mappingService.getMappingbyId(id, userId);
 
-		return ResponseEntity.ok(new MappingResponse(
-			mapping.getId(),
-			mapping.getTemplateId(),
-			mapping.getName(),
-			mapping.getSchema(),
-			mapping.getConfig()));
+		return ResponseEntity.ok(mapper.toResponse(mapping));
 	}
 }
