@@ -82,8 +82,7 @@ public class UploadService {
 			} catch (MappingNotFoundException ex) {
 				mappingId = null;
 			} catch (Exception ex) {
-				System.out.println("Error:" + ex.getMessage());
-				ex.printStackTrace();
+				log.error("Failed to get mapping", ex);
 			}
 		}
 
