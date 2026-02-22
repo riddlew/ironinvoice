@@ -4,12 +4,15 @@ import dev.riddle.ironinvoice.api.error.ApiError;
 import dev.riddle.ironinvoice.shared.mappings.application.exceptions.MappingNotFoundException;
 import dev.riddle.ironinvoice.shared.uploads.application.exceptions.UploadNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @RestControllerAdvice
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class NotFoundHandler {
 
 	@ExceptionHandler(UploadNotFoundException.class)

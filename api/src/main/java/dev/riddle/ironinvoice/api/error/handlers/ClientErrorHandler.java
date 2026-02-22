@@ -4,6 +4,8 @@ import dev.riddle.ironinvoice.api.error.ApiError;
 import dev.riddle.ironinvoice.api.error.exceptions.ApiException;
 import dev.riddle.ironinvoice.api.error.exceptions.StorageException;
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,6 +14,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.time.Instant;
 
 @RestControllerAdvice
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class ClientErrorHandler {
 
 	@ExceptionHandler(ApiException.class)
