@@ -4,6 +4,7 @@ import dev.riddle.ironinvoice.api.features.mappings.application.commands.CreateM
 import dev.riddle.ironinvoice.api.features.mappings.application.exceptions.MappingNotFoundException;
 import dev.riddle.ironinvoice.api.features.mappings.persistence.MappingEntity;
 import dev.riddle.ironinvoice.api.features.mappings.persistence.MappingRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,10 @@ public class MappingService {
 		return mappingRepository.save(mapping);
 	}
 
+	@Transactional
 	public MappingEntity getMappingbyId(UUID mappingId, UUID userId) {
 		return mappingRepository
-			.getMappingByIdAndCreatedBy(mappingId, userId)
+			.getByIdAndCreatedBy(mappingId, userId)
 			.orElseThrow(() -> new MappingNotFoundException(mappingId));
 	}
 }

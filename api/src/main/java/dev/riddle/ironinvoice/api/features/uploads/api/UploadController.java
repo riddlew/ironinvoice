@@ -27,8 +27,8 @@ public class UploadController {
 
 		return ResponseEntity.ok(
 			new UploadResponse(
-				result.id(),
-				result.originalFilename()
+				result.uploadId(),
+				result.status()
 			)
 		);
 	}

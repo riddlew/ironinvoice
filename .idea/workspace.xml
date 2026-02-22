@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="187" />
+    <option name="cachedIndexableFilesCount" value="220" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -81,7 +81,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "feat/mappings",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/wmbp/repos/ironinvoice/api/src/main/java/dev/riddle/ironinvoice/features/uploads/api",
+    "last_opened_file_path": "/Users/wmbp/repos/ironinvoice/worker/src/main/java/dev/riddle/ironinvoice/worker",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -108,11 +108,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoice/worker" />
       <recent name="$PROJECT_DIR$/api/src/main/java/dev/riddle/ironinvoice/features/uploads/api" />
       <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoiceworker" />
       <recent name="$PROJECT_DIR$/infrastructure/env" />
       <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoiceworker/upload" />
-      <recent name="$PROJECT_DIR$/shared/src/contracts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api/src/main/resources/db/migration" />
@@ -373,7 +373,7 @@
       <option name="presentableId" value="Default" />
       <updated>1771620811272</updated>
       <workItem from="1771620811639" duration="25025000" />
-      <workItem from="1771718151688" duration="10484000" />
+      <workItem from="1771718151688" duration="17833000" />
     </task>
     <task id="LOCAL-00011" summary="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced `mappingId` and `templateId` to upload flow for additional context.&#10;- Added new DTOs (`CreateUploadRequest`, `CreateUploadJobRequest`) to streamline data handling.&#10;- Refactored `UploadService` and `UploadJobService` to process uploads with mapping and template IDs.&#10;- Updated `UploadJobMessage` to include `mappingId` and `templateId`.&#10;- Adjusted package structure and configuration to align with updated shared module.">
       <option name="closed" value="true" />
@@ -471,7 +471,39 @@
       <option name="project" value="LOCAL" />
       <updated>1771733462751</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="fix: correct package name in trusted packages configuration">
+      <option name="closed" value="true" />
+      <created>1771735127791</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1771735127791</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: add CSV header parsing and validation to upload process&#10;&#10;- Implemented `parseCsvHeaders` method in `UploadService` to extract and validate headers from uploaded CSV files.&#10;- Updated `UploadEntity` to store CSV headers as a JSONB field in the database.&#10;- Modified database schema to include `headers` column in `uploads` table.">
+      <option name="closed" value="true" />
+      <created>1771735401347</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1771735401347</updated>
+    </task>
+    <task id="LOCAL-00025" summary="refactor: move mapping validation from `UploadController` to `UploadService`&#10;&#10;- Removed mapping validation logic from `UploadController` for better separation of concerns.  &#10;- Added `MappingService` as a dependency in `UploadService` to handle mapping validation during uploads.">
+      <option name="closed" value="true" />
+      <created>1771735831750</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1771735831750</updated>
+    </task>
+    <task id="LOCAL-00026" summary="refactor: move mapping validation from `UploadController` to `UploadService`&#10;&#10;- Removed mapping validation logic from `UploadController` for better separation of concerns.  &#10;- Added `MappingService` as a dependency in `UploadService` to handle mapping validation during uploads.">
+      <option name="closed" value="true" />
+      <created>1771735915879</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1771735915879</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -519,9 +551,12 @@
     <MESSAGE value="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure." />
     <MESSAGE value="refactor: remove `@Setter` and ability to set schema&#10;&#10;Schema is auto-generated and should not be set manually.&#10;&#10;- Removed unused `@Setter` annotation from `schema` field." />
     <MESSAGE value="feat: add seeders for users and mapping configuration&#10;&#10;- Seeders will only run in non-production environments." />
-    <MESSAGE value="fix: update package reference for `json_format_mapper` in worker `application.yml`" />
     <MESSAGE value="fixup! feat: add seeders for users and mapping configuration" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixup! feat: add seeders for users and mapping configuration" />
+    <MESSAGE value="fix: update package reference for `json_format_mapper` in worker `application.yml`" />
+    <MESSAGE value="fix: correct package name in trusted packages configuration" />
+    <MESSAGE value="feat: add CSV header parsing and validation to upload process&#10;&#10;- Implemented `parseCsvHeaders` method in `UploadService` to extract and validate headers from uploaded CSV files.&#10;- Updated `UploadEntity` to store CSV headers as a JSONB field in the database.&#10;- Modified database schema to include `headers` column in `uploads` table." />
+    <MESSAGE value="refactor: move mapping validation from `UploadController` to `UploadService`&#10;&#10;- Removed mapping validation logic from `UploadController` for better separation of concerns.  &#10;- Added `MappingService` as a dependency in `UploadService` to handle mapping validation during uploads." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: move mapping validation from `UploadController` to `UploadService`&#10;&#10;- Removed mapping validation logic from `UploadController` for better separation of concerns.  &#10;- Added `MappingService` as a dependency in `UploadService` to handle mapping validation during uploads." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

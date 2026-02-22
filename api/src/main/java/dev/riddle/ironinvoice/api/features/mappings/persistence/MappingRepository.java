@@ -8,5 +8,5 @@ import java.util.UUID;
 
 @Repository
 public interface MappingRepository extends CrudRepository<MappingEntity, UUID> {
-	Optional<MappingEntity> getMappingByIdAndCreatedBy(UUID mappingId, UUID createdBy);
+	Optional<MappingEntity> getByIdAndCreatedBy(UUID mappingId, UUID createdBy);
 }

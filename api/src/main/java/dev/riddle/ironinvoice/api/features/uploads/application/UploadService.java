@@ -3,6 +3,7 @@ package dev.riddle.ironinvoice.api.features.uploads.application;
 import dev.riddle.ironinvoice.api.error.exceptions.ApiException;
 import dev.riddle.ironinvoice.api.error.exceptions.StorageException;
 import dev.riddle.ironinvoice.api.features.mappings.application.MappingService;
+import dev.riddle.ironinvoice.api.features.mappings.application.exceptions.MappingNotFoundException;
 import dev.riddle.ironinvoice.api.features.uploads.api.dto.CreateUploadJobRequest;
 import dev.riddle.ironinvoice.api.features.uploads.application.exceptions.UploadNotFoundException;
 import dev.riddle.ironinvoice.shared.uploads.enums.UploadStatus;
@@ -72,29 +73,38 @@ public class UploadService {
 		uploadEntity.setStatus(UploadStatus.PENDING);
 		uploadEntity.setHeaders(headers);
 
+		UploadStatus status = UploadStatus.PENDING_MAPPING;
+
 		if (mappingId != null) {
-			mappingService.getMappingbyId(mappingId, userId);
+			try {
+				mappingId = mappingService.getMappingbyId(mappingId, userId).getId();
+				status = UploadStatus.PENDING_TEMPLATE;
+			} catch (MappingNotFoundException ex) {
+				mappingId = null;
+			} catch (Exception ex) {
+				System.out.println("Error:" + ex.getMessage());
+				ex.printStackTrace();
+			}
 		}
 
-		if (templateId != null) {
+		if (templateId != null && status == UploadStatus.PENDING_TEMPLATE) {
 			// TODO: validate from db that it's a valid mapping and owned by the user. If it isn't, throw.
 		}
 
 		UploadEntity savedUploadEntity = uploadRepository.save(uploadEntity);
 		log.info("Saved upload: {}", savedUploadEntity);
 
-		uploadJobService.processUpload(new CreateUploadJobRequest(
-			uploadEntity,
-			mappingId,
-			templateId
-		));
+		if (status == UploadStatus.QUEUED) {
+			uploadJobService.processUpload(new CreateUploadJobRequest(
+				uploadEntity,
+				mappingId,
+				templateId
+			));
+		}
 
 		return new UploadResult(
 			savedUploadEntity.getId(),
-			savedUploadEntity.getOriginalFilename()
-//			scan.headers()
-//			savedUploadEntity.getRowCount(),
-//			scan.sampleRows()
+			status
 		);
 	}
 

@@ -3,6 +3,7 @@ package dev.riddle.ironinvoice.api.config.seeders;
 import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.MappingConfig;
 import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.MappingField;
 import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.MappingOptions;
+import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.MappingSchema;
 import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.rules.DateFormatRule;
 import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.rules.DecimalMinRule;
 import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.rules.IntMinRule;
@@ -18,12 +19,16 @@ import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Component;
+import tools.jackson.databind.ObjectMapper;
 
 import java.math.BigDecimal;
+import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 @Component
 @Order(2)
@@ -33,9 +38,12 @@ public class MappingSeeder implements ApplicationRunner {
 
 	private final UserRepository userRepository;
 	private final MappingRepository mappingRepository;
+	private final ObjectMapper objectMapper;
+	private final NamedParameterJdbcTemplate jdbcTemplate;
 
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
+		System.out.println("Number of mappings: " + mappingRepository.count());
 		if (mappingRepository.count() > 0) return;
 
 		System.out.println("Seeding mappings...");
@@ -104,11 +112,31 @@ public class MappingSeeder implements ApplicationRunner {
 			new MappingOptions(true, true)
 		);
 
-		MappingEntity mapping = new MappingEntity();
-		mapping.setCreatedBy(testUser.getId());
-		mapping.setName("Test Mapping");
-		mapping.setConfig(config);
+		MappingSchema schema = new MappingSchema(List.of(
+			"Invoice #", "Customer Name", "Item Name", "Qty", "Item Description", "Item Price"
+		));
 
-		mappingRepository.save(mapping);
+		UUID id = UUID.fromString("dde81510-626f-4b74-83ce-2addc003e0ef");
+		OffsetDateTime now = OffsetDateTime.now();
+
+		String configJson = objectMapper.writeValueAsString(config);
+		String schemaJson = objectMapper.writeValueAsString(schema);
+
+		var params =new MapSqlParameterSource()
+			.addValue("id", id)
+			.addValue("created_by", testUser.getId())
+			.addValue("name", "Test Mapping")
+			.addValue("schema", schemaJson)
+			.addValue("config", configJson)
+			.addValue("created_at", now)
+			.addValue("updated_at", now);
+
+		jdbcTemplate.update("""
+				INSERT INTO mappings (
+					id, created_by, name, schema, config, created_at, updated_at
+				) VALUES (
+					:id, :created_by, :name, :schema::jsonb, :config::jsonb, :created_at, :updated_at
+				)
+			""", params);
 	}
 }
