@@ -3,7 +3,7 @@ package dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.sources;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
-@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "source")
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include = JsonTypeInfo.As.PROPERTY, property = "type")
 @JsonSubTypes({
 	@JsonSubTypes.Type(name = "COLUMN", value = ColumnSource.class),
 	@JsonSubTypes.Type(name = "INDEX", value = IndexSource.class),

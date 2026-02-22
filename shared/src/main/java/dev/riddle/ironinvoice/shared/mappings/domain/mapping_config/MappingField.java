@@ -11,6 +11,11 @@ public record MappingField(
 	Boolean required,
 	List<MappingRule> rules
 ) {
+	public MappingField {
+		required = required != null ? required : false;
+		rules = rules != null ? rules : List.of();
+	}
+
 	public enum MappingValueType {
 		STRING,
 		INT,
