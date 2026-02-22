@@ -46,11 +46,11 @@ public class UploadService {
 	private final UploadJobService uploadJobService;
 	private final MappingService mappingService;
 
-	public UploadResult createUpload(UUID userId, MultipartFile file) {
+	public UploadEntity createUpload(UUID userId, MultipartFile file) {
 		return createUpload(userId, file, null, null);
 	}
 
-	public UploadResult createUpload(
+	public UploadEntity createUpload(
 		UUID userId,
 		MultipartFile file,
 		UUID mappingId,
@@ -70,15 +70,13 @@ public class UploadService {
 		uploadEntity.setCreatedBy(userId);
 		uploadEntity.setOriginalFilename(originalFilename);
 		uploadEntity.setStorageKey(storageKey);
-		uploadEntity.setStatus(UploadStatus.PENDING);
+		uploadEntity.setStatus(UploadStatus.PENDING_MAPPING);
 		uploadEntity.setHeaders(headers);
-
-		UploadStatus status = UploadStatus.PENDING_MAPPING;
 
 		if (mappingId != null) {
 			try {
 				mappingId = mappingService.getMappingbyId(mappingId, userId).getId();
-				status = UploadStatus.PENDING_TEMPLATE;
+				uploadEntity.setStatus(UploadStatus.PENDING_TEMPLATE);
 			} catch (MappingNotFoundException ex) {
 				mappingId = null;
 			} catch (Exception ex) {
@@ -86,14 +84,14 @@ public class UploadService {
 			}
 		}
 
-		if (templateId != null && status == UploadStatus.PENDING_TEMPLATE) {
+		if (templateId != null && uploadEntity.getStatus() == UploadStatus.PENDING_TEMPLATE) {
 			// TODO: validate from db that it's a valid mapping and owned by the user. If it isn't, throw.
 		}
 
 		UploadEntity savedUploadEntity = uploadRepository.save(uploadEntity);
 		log.info("Saved upload: {}", savedUploadEntity);
 
-		if (status == UploadStatus.QUEUED) {
+		if (uploadEntity.getStatus() == UploadStatus.QUEUED) {
 			uploadJobService.processUpload(new CreateUploadJobRequest(
 				uploadEntity,
 				mappingId,
@@ -101,24 +99,13 @@ public class UploadService {
 			));
 		}
 
-		return new UploadResult(
-			savedUploadEntity.getId(),
-			status
-		);
+		return savedUploadEntity;
 	}
 
-	public UploadMetadata getUpload(UUID userId, UUID uploadId) {
-		UploadEntity upload = uploadRepository
+	public UploadEntity getUpload(UUID userId, UUID uploadId) {
+		return uploadRepository
 			.findByIdAndCreatedBy(uploadId, userId)
 			.orElseThrow(() -> new UploadNotFoundException(uploadId));
-
-		return new UploadMetadata(
-			upload.getId(),
-			upload.getOriginalFilename(),
-//			upload.getHeadersJson(),
-//			upload.getRowCount(),
-			upload.getCreatedAt()
-		);
 	}
 
 	private void validateFile(MultipartFile file) {
