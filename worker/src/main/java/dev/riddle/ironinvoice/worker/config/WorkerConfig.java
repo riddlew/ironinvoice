@@ -42,7 +42,7 @@ public class WorkerConfig {
 		JacksonJsonMessageConverter converter = new JacksonJsonMessageConverter();
 
 		DefaultJacksonJavaTypeMapper typeMapper = new DefaultJacksonJavaTypeMapper();
-		typeMapper.addTrustedPackages("dev.riddle.ironinvoiceshared.uploads.contracts");
+		typeMapper.addTrustedPackages("dev.riddle.ironinvoice.shared.uploads.contracts");
 		converter.setJavaTypeMapper(typeMapper);
 
 		return converter;
