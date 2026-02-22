@@ -1,5 +1,6 @@
 package dev.riddle.ironinvoice.worker.uploads.persistence;
 
+import dev.riddle.ironinvoice.shared.uploads.persistence.UploadEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

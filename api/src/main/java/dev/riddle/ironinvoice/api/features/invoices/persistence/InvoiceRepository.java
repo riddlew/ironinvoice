@@ -1,5 +1,6 @@
 package dev.riddle.ironinvoice.api.features.invoices.persistence;
 
+import dev.riddle.ironinvoice.shared.invoices.persistence.InvoiceEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,6 +1,6 @@
 package dev.riddle.ironinvoice.shared.uploads.contracts;
 
-import dev.riddle.ironinvoice.shared.invoices.InvoiceRowDetails;
+import dev.riddle.ironinvoice.shared.invoices.dto.InvoiceRowDetails;
 
 import java.util.List;
 

@@ -1,9 +1,9 @@
 package dev.riddle.ironinvoice.api.features.mappings.application;
 
 import dev.riddle.ironinvoice.api.features.mappings.application.commands.CreateMappingCommand;
-import dev.riddle.ironinvoice.api.features.mappings.application.exceptions.MappingNotFoundException;
-import dev.riddle.ironinvoice.api.features.mappings.persistence.MappingEntity;
 import dev.riddle.ironinvoice.api.features.mappings.persistence.MappingRepository;
+import dev.riddle.ironinvoice.shared.mappings.application.exceptions.MappingNotFoundException;
+import dev.riddle.ironinvoice.shared.mappings.persistence.MappingEntity;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,11 +1,11 @@
 package dev.riddle.ironinvoice.worker.uploads.application;
 
+import dev.riddle.ironinvoice.shared.uploads.application.exceptions.UploadNotFoundException;
 import dev.riddle.ironinvoice.shared.uploads.contracts.CsvScan;
-import dev.riddle.ironinvoice.shared.invoices.InvoiceRowDetails;
+import dev.riddle.ironinvoice.shared.invoices.dto.InvoiceRowDetails;
+import dev.riddle.ironinvoice.shared.uploads.persistence.UploadEntity;
 import dev.riddle.ironinvoice.worker.config.properties.StorageProperties;
-import dev.riddle.ironinvoice.shared.uploads.exceptions.InvalidCsvException;
-import dev.riddle.ironinvoice.worker.uploads.application.exceptions.UploadNotFoundException;
-import dev.riddle.ironinvoice.worker.uploads.persistence.UploadEntity;
+import dev.riddle.ironinvoice.shared.uploads.application.exceptions.InvalidCsvException;
 import dev.riddle.ironinvoice.worker.uploads.persistence.UploadRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -33,7 +33,7 @@ public class UploadJobService {
 	public UploadEntity getUpload(UUID userId, UUID uploadId) throws UploadNotFoundException {
 		return uploadRepository
 			.findByIdAndCreatedBy(uploadId, userId)
-			.orElseThrow(() -> new UploadNotFoundException("Upload not found"));
+			.orElseThrow(() -> new UploadNotFoundException(uploadId));
 	}
 
 	public CsvScan parseCsv(String storageKey) throws InvalidCsvException, Exception {

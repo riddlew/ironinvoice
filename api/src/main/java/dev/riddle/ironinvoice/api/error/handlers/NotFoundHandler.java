@@ -1,8 +1,8 @@
 package dev.riddle.ironinvoice.api.error.handlers;
 
 import dev.riddle.ironinvoice.api.error.ApiError;
-import dev.riddle.ironinvoice.api.features.mappings.application.exceptions.MappingNotFoundException;
-import dev.riddle.ironinvoice.api.features.uploads.application.exceptions.UploadNotFoundException;
+import dev.riddle.ironinvoice.shared.mappings.application.exceptions.MappingNotFoundException;
+import dev.riddle.ironinvoice.shared.uploads.application.exceptions.UploadNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

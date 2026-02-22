@@ -1,10 +1,10 @@
 package dev.riddle.ironinvoice.worker.invoices.application;
 
-import dev.riddle.ironinvoice.shared.invoices.InvoiceRowDetails;
+import dev.riddle.ironinvoice.shared.invoices.dto.InvoiceRowDetails;
+import dev.riddle.ironinvoice.shared.invoices.persistence.InvoiceEntity;
+import dev.riddle.ironinvoice.shared.invoices.persistence.InvoiceRowEntity;
 import dev.riddle.ironinvoice.worker.invoices.dto.CreateInvoiceRequest;
-import dev.riddle.ironinvoice.worker.invoices.persistence.InvoiceEntity;
 import dev.riddle.ironinvoice.worker.invoices.persistence.InvoiceRepository;
-import dev.riddle.ironinvoice.worker.invoices.persistence.InvoiceRowEntity;
 import dev.riddle.ironinvoice.worker.invoices.persistence.InvoiceRowRepository;
 import dev.riddle.ironinvoice.worker.uploads.persistence.UploadRepository;
 import jakarta.transaction.Transactional;

@@ -4,7 +4,7 @@ import dev.riddle.ironinvoice.api.features.mappings.application.MappingService;
 import dev.riddle.ironinvoice.api.features.uploads.application.UploadJobService;
 import dev.riddle.ironinvoice.api.features.uploads.application.UploadService;
 import dev.riddle.ironinvoice.api.config.properties.StorageProperties;
-import dev.riddle.ironinvoice.api.features.uploads.persistence.UploadEntity;
+import dev.riddle.ironinvoice.shared.uploads.persistence.UploadEntity;
 import dev.riddle.ironinvoice.api.features.uploads.persistence.UploadRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

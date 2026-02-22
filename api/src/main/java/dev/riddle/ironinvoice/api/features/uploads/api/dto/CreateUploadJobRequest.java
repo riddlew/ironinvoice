@@ -1,6 +1,6 @@
 package dev.riddle.ironinvoice.api.features.uploads.api.dto;
 
-import dev.riddle.ironinvoice.api.features.uploads.persistence.UploadEntity;
+import dev.riddle.ironinvoice.shared.uploads.persistence.UploadEntity;
 
 import java.util.UUID;
 

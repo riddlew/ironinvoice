@@ -1,6 +1,6 @@
 package dev.riddle.ironinvoice.worker.invoices.dto;
 
-import dev.riddle.ironinvoice.shared.invoices.InvoiceRowDetails;
+import dev.riddle.ironinvoice.shared.invoices.dto.InvoiceRowDetails;
 
 import java.util.List;
 import java.util.UUID;

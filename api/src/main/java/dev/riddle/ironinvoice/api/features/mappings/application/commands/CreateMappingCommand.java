@@ -1,6 +1,6 @@
 package dev.riddle.ironinvoice.api.features.mappings.application.commands;
 
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.MappingConfig;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.MappingConfig;
 
 import java.util.UUID;
 

@@ -2,12 +2,12 @@ package dev.riddle.ironinvoice.worker.uploads.application;
 
 import dev.riddle.ironinvoice.shared.uploads.contracts.CsvScan;
 import dev.riddle.ironinvoice.shared.uploads.contracts.UploadJobMessage;
-import dev.riddle.ironinvoice.shared.uploads.enums.UploadStatus;
+import dev.riddle.ironinvoice.shared.uploads.application.enums.UploadStatus;
 import dev.riddle.ironinvoice.worker.invoices.dto.CreateInvoiceRequest;
 import dev.riddle.ironinvoice.worker.invoices.application.InvoiceService;
-import dev.riddle.ironinvoice.worker.invoices.persistence.InvoiceEntity;
+import dev.riddle.ironinvoice.shared.invoices.persistence.InvoiceEntity;
 import dev.riddle.ironinvoice.worker.mappings.application.MappingService;
-import dev.riddle.ironinvoice.worker.uploads.persistence.UploadEntity;
+import dev.riddle.ironinvoice.shared.uploads.persistence.UploadEntity;
 import dev.riddle.ironinvoice.worker.uploads.persistence.UploadRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;

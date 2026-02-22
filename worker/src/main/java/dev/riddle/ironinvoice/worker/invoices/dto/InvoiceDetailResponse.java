@@ -1,6 +1,6 @@
 package dev.riddle.ironinvoice.worker.invoices.dto;
 
-import dev.riddle.ironinvoice.shared.invoices.InvoiceRowDetails;
+import dev.riddle.ironinvoice.shared.invoices.dto.InvoiceRowDetails;
 
 import java.time.OffsetDateTime;
 import java.util.List;

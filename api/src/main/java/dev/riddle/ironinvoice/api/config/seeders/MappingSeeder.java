@@ -1,16 +1,15 @@
 package dev.riddle.ironinvoice.api.config.seeders;
 
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.MappingConfig;
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.MappingField;
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.MappingOptions;
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.MappingSchema;
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.rules.DateFormatRule;
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.rules.DecimalMinRule;
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.rules.IntMinRule;
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.sources.ColumnSource;
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.sources.ExprSource;
-import dev.riddle.ironinvoice.api.features.mappings.domain.mapping_config.sources.NowSource;
-import dev.riddle.ironinvoice.api.features.mappings.persistence.MappingEntity;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.MappingConfig;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.MappingField;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.MappingOptions;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.MappingSchema;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.rules.DateFormatRule;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.rules.DecimalMinRule;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.rules.IntMinRule;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.sources.ColumnSource;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.sources.ExprSource;
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.sources.NowSource;
 import dev.riddle.ironinvoice.api.features.mappings.persistence.MappingRepository;
 import dev.riddle.ironinvoice.api.features.users.persistence.UserEntity;
 import dev.riddle.ironinvoice.api.features.users.persistence.UserRepository;

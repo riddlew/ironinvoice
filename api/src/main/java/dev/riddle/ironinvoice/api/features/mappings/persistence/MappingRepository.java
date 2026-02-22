@@ -1,5 +1,6 @@
 package dev.riddle.ironinvoice.api.features.mappings.persistence;
 
+import dev.riddle.ironinvoice.shared.mappings.persistence.MappingEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

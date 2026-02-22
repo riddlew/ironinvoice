@@ -1,8 +1,8 @@
 package dev.riddle.ironinvoice.worker.mappings.application;
 
+import dev.riddle.ironinvoice.shared.mappings.application.exceptions.MappingNotFoundException;
+import dev.riddle.ironinvoice.shared.mappings.persistence.MappingEntity;
 import dev.riddle.ironinvoice.worker.mappings.application.commands.CreateMappingCommand;
-import dev.riddle.ironinvoice.worker.mappings.application.exceptions.MappingNotFoundException;
-import dev.riddle.ironinvoice.worker.mappings.persistence.MappingEntity;
 import dev.riddle.ironinvoice.worker.mappings.persistence.MappingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -27,7 +27,7 @@ public class MappingService {
 
 	public MappingEntity getMappingbyId(UUID mappingId, UUID userId) {
 		return mappingRepository
-			.getMappingByIdAndCreatedBy(mappingId, userId)
+			.getByIdAndCreatedBy(mappingId, userId)
 			.orElseThrow(() -> new MappingNotFoundException(mappingId));
 	}
 }
