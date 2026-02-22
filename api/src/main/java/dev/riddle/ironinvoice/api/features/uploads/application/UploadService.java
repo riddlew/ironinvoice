@@ -2,10 +2,9 @@ package dev.riddle.ironinvoice.api.features.uploads.application;
 
 import dev.riddle.ironinvoice.api.error.exceptions.ApiException;
 import dev.riddle.ironinvoice.api.error.exceptions.StorageException;
+import dev.riddle.ironinvoice.api.features.mappings.application.MappingService;
 import dev.riddle.ironinvoice.api.features.uploads.api.dto.CreateUploadJobRequest;
 import dev.riddle.ironinvoice.api.features.uploads.application.exceptions.UploadNotFoundException;
-import dev.riddle.ironinvoice.shared.invoices.InvoiceRowDetails;
-import dev.riddle.ironinvoice.shared.uploads.contracts.CsvScan;
 import dev.riddle.ironinvoice.shared.uploads.enums.UploadStatus;
 import dev.riddle.ironinvoice.api.config.properties.StorageProperties;
 import dev.riddle.ironinvoice.api.features.uploads.api.dto.UploadMetadata;
@@ -20,7 +19,6 @@ import org.apache.commons.csv.CSVParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
-import tools.jackson.databind.ObjectMapper;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -43,9 +41,9 @@ public class UploadService {
 	);
 
 	private final UploadRepository uploadRepository;
-	private final ObjectMapper objectMapper;
 	private final StorageProperties storageProperties;
 	private final UploadJobService uploadJobService;
+	private final MappingService mappingService;
 
 	public UploadResult createUpload(UUID userId, MultipartFile file) {
 		return createUpload(userId, file, null, null);
@@ -75,7 +73,7 @@ public class UploadService {
 		uploadEntity.setHeaders(headers);
 
 		if (mappingId != null) {
-			// TODO: validate from db that it's a valid mapping and owned by the user. If it isn't, throw.
+			mappingService.getMappingbyId(mappingId, userId);
 		}
 
 		if (templateId != null) {

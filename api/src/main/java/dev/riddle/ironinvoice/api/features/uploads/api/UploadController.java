@@ -1,6 +1,5 @@
 package dev.riddle.ironinvoice.api.features.uploads.api;
 
-import dev.riddle.ironinvoice.api.features.mappings.application.MappingService;
 import dev.riddle.ironinvoice.api.features.uploads.api.dto.*;
 import dev.riddle.ironinvoice.api.features.uploads.application.UploadService;
 import dev.riddle.ironinvoice.api.security.CurrentUser;
@@ -17,21 +16,12 @@ import java.util.UUID;
 public class UploadController {
 
 	private final UploadService uploadService;
-	private final MappingService mappingService;
 
 	@PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public ResponseEntity<UploadResponse> upload(
 		CreateUploadRequest request
 	) {
 		UUID userId = CurrentUser.requireId();
-
-		if (request.mappingId() != null) {
-			mappingService.getMappingbyId(request.mappingId(), userId);
-		}
-
-		if (request.templateId() != null) {
-//			templateService.getTemplateById(request.mappingId(), userId);
-		}
 
 		UploadResult result = uploadService.createUpload(userId, request.file(), request.mappingId(), request.templateId());
 
