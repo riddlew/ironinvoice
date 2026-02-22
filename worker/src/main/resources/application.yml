@@ -16,4 +16,4 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         type:
-          json_format_mapper: dev.riddle.ironinvoiceworker.shared.config.Jackson3JsonFormatMapper
+          json_format_mapper: dev.riddle.ironinvoice.worker.shared.config.Jackson3JsonFormatMapper

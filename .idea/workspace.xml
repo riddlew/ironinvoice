@@ -4,16 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="9c8aff82-d118-4a62-a769-8d6689c5dd2c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="9c8aff82-d118-4a62-a769-8d6689c5dd2c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="183" />
+    <option name="cachedIndexableFilesCount" value="187" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -61,6 +59,9 @@
     <commands />
     <urls />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -87,7 +88,7 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "git-widget-placeholder": "feat/mappings",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/Users/wmbp/repos/ironinvoice/worker/src/main/java/dev/riddle/ironinvoiceworker",
+    "last_opened_file_path": "/Users/wmbp/repos/ironinvoice/api/src/main/java/dev/riddle/ironinvoice/features/uploads/api",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -97,6 +98,7 @@
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
+    "run.configurations.included.in.services": "true",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
   },
@@ -113,11 +115,11 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api/src/main/java/dev/riddle/ironinvoice/features/uploads/api" />
       <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoiceworker" />
       <recent name="$PROJECT_DIR$/infrastructure/env" />
       <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoiceworker/upload" />
       <recent name="$PROJECT_DIR$/shared/src/contracts" />
-      <recent name="$PROJECT_DIR$/shared/contracts" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/api/src/main/resources/db/migration" />
@@ -125,11 +127,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.riddle.ironinvoice.api.error.handlers" />
+      <recent name="dev.riddle.ironinvoice.features.uploads.application.exceptions" />
       <recent name="dev.riddle.ironinvoice.features.mappings.api.dto.mapping_config.rules" />
       <recent name="dev.riddle.ironinvoice.features.mappings.api.dto.mapping_config.sources" />
       <recent name="dev.riddle.ironinvoiceworker.common.exceptions" />
-      <recent name="dev.riddle.ironinvoice.features.invoice.api.dto" />
-      <recent name="dev.riddle.ironinvoice.features.invoice.persistence" />
     </key>
   </component>
   <component name="RubyModuleManagerSettings">
@@ -138,6 +140,16 @@
         <option value="$PROJECT_DIR$/shared" />
         <option value="$PROJECT_DIR$/worker" />
       </list>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
     </option>
   </component>
   <component name="RunManager" selected="Docker.Run All">
@@ -207,9 +219,23 @@
       </RunnerSettings>
       <method v="2" />
     </configuration>
+    <configuration name="IronInvoiceWorkerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ironinvoiceworker" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dev.riddle.ironinvoice.worker.IronInvoiceWorkerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="IronInvoiceWorkerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="ironinvoiceworker" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="dev.riddle.ironinvoiceworker.IronInvoiceWorkerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IroninvoiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ironinvoice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dev.riddle.ironinvoice.api.IroninvoiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -246,6 +272,8 @@
       <item itemvalue="JUnit.UploadControllerIT" />
       <item itemvalue="JUnit.UploadServiceTest" />
       <item itemvalue="Remote JVM Debug.Debug API Container" />
+      <item itemvalue="Spring Boot.IronInvoiceWorkerApplication (1)" />
+      <item itemvalue="Spring Boot.IroninvoiceApplication (1)" />
       <item itemvalue="Spring Boot.IronInvoiceWorkerApplication" />
       <item itemvalue="Spring Boot.IroninvoiceApplication" />
     </list>
@@ -351,7 +379,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1771620811272</updated>
-      <workItem from="1771620811639" duration="24537000" />
+      <workItem from="1771620811639" duration="25025000" />
+      <workItem from="1771718151688" duration="5765000" />
     </task>
     <task id="LOCAL-00011" summary="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced `mappingId` and `templateId` to upload flow for additional context.&#10;- Added new DTOs (`CreateUploadRequest`, `CreateUploadJobRequest`) to streamline data handling.&#10;- Refactored `UploadService` and `UploadJobService` to process uploads with mapping and template IDs.&#10;- Updated `UploadJobMessage` to include `mappingId` and `templateId`.&#10;- Adjusted package structure and configuration to align with updated shared module.">
       <option name="closed" value="true" />
@@ -377,7 +406,39 @@
       <option name="project" value="LOCAL" />
       <updated>1771717642371</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="refactor: move shared package components to feature-specific packages&#10;&#10;- Restructured `shared` package components into appropriate feature-specific packages for better organization.&#10;- Updated imports and references across `api` and `worker` modules to reflect the new package structure.">
+      <option name="closed" value="true" />
+      <created>1771717837751</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1771717837751</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure.">
+      <option name="closed" value="true" />
+      <created>1771723483901</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1771723483901</updated>
+    </task>
+    <task id="LOCAL-00016" summary="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure.">
+      <option name="closed" value="true" />
+      <created>1771723498929</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1771723498929</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure.">
+      <option name="closed" value="true" />
+      <created>1771723795679</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1771723795679</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,7 +482,9 @@
     <MESSAGE value="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced `mappingId` and `templateId` to upload flow for additional context.&#10;- Added new DTOs (`CreateUploadRequest`, `CreateUploadJobRequest`) to streamline data handling.&#10;- Refactored `UploadService` and `UploadJobService` to process uploads with mapping and template IDs.&#10;- Updated `UploadJobMessage` to include `mappingId` and `templateId`.&#10;- Adjusted package structure and configuration to align with updated shared module." />
     <MESSAGE value="feat: add mapping creation and persistence&#10;&#10;- Implemented `MappingService` to handle mapping creation using `CreateMappingCommand`.&#10;- Added DTOs (`CreateMappingCommand`, `MappingConfig`, `MappingField`, `MappingSource`, etc.) for mapping structure.&#10;- Created `MappingEntity` and `MappingRepository` for persistence with schema and config handling.&#10;- Introduced database migration to create `mappings` table" />
     <MESSAGE value="feat: add mapping validation to upload process&#10;&#10;- Introduced `getMappingById` method in `MappingService` to validate and fetch user-specific mappings during uploads.&#10;- Added `MappingNotFoundException` to handle missing mappings.&#10;- Created `MappingExceptionHandler` to provide error responses for mapping-related errors.&#10;- Updated `UploadController` to validate `mappingId` in the upload request.&#10;- Introduced `ApiError` for standardized error responses." />
-    <option name="LAST_COMMIT_MESSAGE" value="feat: add mapping validation to upload process&#10;&#10;- Introduced `getMappingById` method in `MappingService` to validate and fetch user-specific mappings during uploads.&#10;- Added `MappingNotFoundException` to handle missing mappings.&#10;- Created `MappingExceptionHandler` to provide error responses for mapping-related errors.&#10;- Updated `UploadController` to validate `mappingId` in the upload request.&#10;- Introduced `ApiError` for standardized error responses." />
+    <MESSAGE value="refactor: move shared package components to feature-specific packages&#10;&#10;- Restructured `shared` package components into appropriate feature-specific packages for better organization.&#10;- Updated imports and references across `api` and `worker` modules to reflect the new package structure." />
+    <MESSAGE value="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure." />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

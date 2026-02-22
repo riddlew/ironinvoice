@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.riddle</groupId>
-	<artifactId>ironinvoiceworker</artifactId>
+	<artifactId>ironinvoice-worker</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>Iron Invoice Worker</name>
 	<description>Worker for processing invoice background jobs</description>
