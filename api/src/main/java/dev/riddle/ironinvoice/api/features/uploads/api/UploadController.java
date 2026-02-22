@@ -25,12 +25,12 @@ public class UploadController {
 
 		UploadResult result = uploadService.createUpload(userId, request.file(), request.mappingId(), request.templateId());
 
-		return ResponseEntity.ok(
-			new UploadResponse(
+		return ResponseEntity
+			.accepted()
+			.body(new UploadResponse(
 				result.uploadId(),
 				result.status()
-			)
-		);
+			));
 	}
 
 	@GetMapping("/{id}")
