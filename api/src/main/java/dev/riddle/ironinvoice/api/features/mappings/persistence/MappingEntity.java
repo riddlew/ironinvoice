@@ -49,7 +49,6 @@ public class MappingEntity {
 	@Column(name = "schema", nullable = false, columnDefinition = "jsonb")
 	@JdbcTypeCode(SqlTypes.JSON)
 	@Getter
-	@Setter
 	private MappingSchema schema;
 
 	/**
@@ -140,18 +139,18 @@ public class MappingEntity {
 		createdAt = now;
 		updatedAt = now;
 
-		setSchema(new MappingSchema(
+		schema = new MappingSchema(
 			generateRequiredHeaders()
-		));
+		);
 	}
 
 	@PreUpdate
 	protected void onUpdate() {
 		updatedAt = OffsetDateTime.now();
 
-		setSchema(new MappingSchema(
+		schema = new MappingSchema(
 			generateRequiredHeaders()
-		));
+		);
 	}
 
 	private List<String> generateRequiredHeaders() {
