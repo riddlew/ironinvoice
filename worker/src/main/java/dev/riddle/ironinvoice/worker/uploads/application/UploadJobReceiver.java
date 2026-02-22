@@ -6,6 +6,7 @@ import dev.riddle.ironinvoice.shared.uploads.enums.UploadStatus;
 import dev.riddle.ironinvoice.worker.invoices.dto.CreateInvoiceRequest;
 import dev.riddle.ironinvoice.worker.invoices.application.InvoiceService;
 import dev.riddle.ironinvoice.worker.invoices.persistence.InvoiceEntity;
+import dev.riddle.ironinvoice.worker.mappings.application.MappingService;
 import dev.riddle.ironinvoice.worker.uploads.persistence.UploadEntity;
 import dev.riddle.ironinvoice.worker.uploads.persistence.UploadRepository;
 import jakarta.transaction.Transactional;
@@ -20,6 +21,7 @@ public class UploadJobReceiver {
 
 	private final UploadJobService uploadJobService;
 	private final InvoiceService invoiceService;
+	private final MappingService mappingService;
 	private final UploadRepository uploadRepository;
 
 	@Transactional
@@ -32,7 +34,7 @@ public class UploadJobReceiver {
 			uploadRepository.save(upload);
 
 			if (request.mappingId() != null) {
-				// TODO: validate from db that it's a valid mapping and owned by the user. If it isn't, throw.
+				mappingService.getMappingbyId(request.mappingId(), upload.getCreatedBy());
 			}
 
 			if (request.templateId() != null) {
