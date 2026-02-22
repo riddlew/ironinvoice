@@ -5,9 +5,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.type.SqlTypes;
 
 import java.time.OffsetDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -46,6 +49,12 @@ public class UploadEntity {
 	@Getter
 	@Setter
 	private UploadStatus status;
+
+	@Column(name = "headers", nullable = false, columnDefinition = "jsonb")
+	@JdbcTypeCode(SqlTypes.JSON)
+	@Getter
+	@Setter
+	private List<String> headers;
 
 	@CreationTimestamp
 	@Column(name = "created_at", nullable = false)

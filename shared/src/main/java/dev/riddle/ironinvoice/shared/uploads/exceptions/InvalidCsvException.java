@@ -1,6 +1,6 @@
-package dev.riddle.ironinvoice.worker.uploads.application.exceptions;
+package dev.riddle.ironinvoice.shared.uploads.exceptions;
 
-public class InvalidCsvException extends Exception {
+public class InvalidCsvException extends RuntimeException {
 	public enum Reason {
 		INVALID_HEADERS,
 		INVALID_FILE,

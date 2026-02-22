@@ -4,24 +4,34 @@ import dev.riddle.ironinvoice.api.error.exceptions.ApiException;
 import dev.riddle.ironinvoice.api.error.exceptions.StorageException;
 import dev.riddle.ironinvoice.api.features.uploads.api.dto.CreateUploadJobRequest;
 import dev.riddle.ironinvoice.api.features.uploads.application.exceptions.UploadNotFoundException;
+import dev.riddle.ironinvoice.shared.invoices.InvoiceRowDetails;
+import dev.riddle.ironinvoice.shared.uploads.contracts.CsvScan;
 import dev.riddle.ironinvoice.shared.uploads.enums.UploadStatus;
 import dev.riddle.ironinvoice.api.config.properties.StorageProperties;
 import dev.riddle.ironinvoice.api.features.uploads.api.dto.UploadMetadata;
 import dev.riddle.ironinvoice.api.features.uploads.api.dto.UploadResult;
 import dev.riddle.ironinvoice.api.features.uploads.persistence.UploadEntity;
 import dev.riddle.ironinvoice.api.features.uploads.persistence.UploadRepository;
+import dev.riddle.ironinvoice.shared.uploads.exceptions.InvalidCsvException;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.csv.CSVFormat;
+import org.apache.commons.csv.CSVParser;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 import tools.jackson.databind.ObjectMapper;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class UploadService {
 
@@ -41,7 +51,12 @@ public class UploadService {
 		return createUpload(userId, file, null, null);
 	}
 
-	public UploadResult createUpload(UUID userId, MultipartFile file, UUID mappingId, UUID templateId) {
+	public UploadResult createUpload(
+		UUID userId,
+		MultipartFile file,
+		UUID mappingId,
+		UUID templateId
+	) {
 		validateFile(file);
 
 		String originalFilename = Optional
@@ -50,15 +65,14 @@ public class UploadService {
 
 		String storageKey = generateStorageKey(originalFilename);
 		Path storedPath = storeFile(file, storageKey);
-//		CsvScan scan = scanCsv(storedPath);
+		List<String> headers = parseCsvHeaders(storageKey);
 
 		UploadEntity uploadEntity = new UploadEntity();
 		uploadEntity.setCreatedBy(userId);
 		uploadEntity.setOriginalFilename(originalFilename);
 		uploadEntity.setStorageKey(storageKey);
 		uploadEntity.setStatus(UploadStatus.PENDING);
-//		uploadEntity.setRowCount(scan.rowCount());
-//		uploadEntity.setHeadersJson(scan.headers());
+		uploadEntity.setHeaders(headers);
 
 		if (mappingId != null) {
 			// TODO: validate from db that it's a valid mapping and owned by the user. If it isn't, throw.
@@ -69,6 +83,7 @@ public class UploadService {
 		}
 
 		UploadEntity savedUploadEntity = uploadRepository.save(uploadEntity);
+		log.info("Saved upload: {}", savedUploadEntity);
 
 		uploadJobService.processUpload(new CreateUploadJobRequest(
 			uploadEntity,
@@ -162,4 +177,54 @@ public class UploadService {
 		}
 	}
 
+	private List<String> parseCsvHeaders(String storageKey) {
+		log.info("Parsing Headers from CSV: {}", storageKey);
+
+		Path uploadsRoot = storageProperties.uploadsRoot();
+
+		if (
+			storageKey.contains("/") ||
+				storageKey.contains("\\") ||
+				storageKey.contains("..")
+		) {
+			throw new InvalidCsvException(InvalidCsvException.Reason.INVALID_FILE, "Invalid storage key");
+		}
+
+		Path destination = uploadsRoot
+			.resolve(storageKey)
+			.toAbsolutePath()
+			.normalize();
+
+		try (
+			BufferedReader reader = new BufferedReader(
+				new InputStreamReader(
+					Files.newInputStream(destination),
+					StandardCharsets.UTF_8
+				));
+
+			CSVParser parser = CSVFormat.DEFAULT
+				.builder()
+				.setHeader()
+				.setSkipHeaderRecord(true)
+				.setTrim(true)
+				.get()
+				.parse(reader)
+		) {
+			List<String> headers = new ArrayList<>(parser.getHeaderMap().keySet());
+			headers.removeIf(header -> header == null || header.isBlank());
+
+			if (headers.isEmpty()) {
+				throw new InvalidCsvException(InvalidCsvException.Reason.INVALID_HEADERS, "CSV file must include valid headers");
+			}
+
+			log.info("Headers found: {}", headers);
+			return headers;
+
+		} catch (IllegalArgumentException ex) {
+			throw new InvalidCsvException(InvalidCsvException.Reason.INVALID_FILE, "Invalid CSV file");
+
+		} catch (IOException ex) {
+			throw new InvalidCsvException(InvalidCsvException.Reason.PARSE_ERROR, "Faile to parse CSV file");
+		}
+	}
 }

@@ -3,7 +3,7 @@ package dev.riddle.ironinvoice.worker.uploads.application;
 import dev.riddle.ironinvoice.shared.uploads.contracts.CsvScan;
 import dev.riddle.ironinvoice.shared.invoices.InvoiceRowDetails;
 import dev.riddle.ironinvoice.worker.config.properties.StorageProperties;
-import dev.riddle.ironinvoice.worker.uploads.application.exceptions.InvalidCsvException;
+import dev.riddle.ironinvoice.shared.uploads.exceptions.InvalidCsvException;
 import dev.riddle.ironinvoice.worker.uploads.application.exceptions.UploadNotFoundException;
 import dev.riddle.ironinvoice.worker.uploads.persistence.UploadEntity;
 import dev.riddle.ironinvoice.worker.uploads.persistence.UploadRepository;

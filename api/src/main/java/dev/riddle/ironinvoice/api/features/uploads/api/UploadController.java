@@ -30,7 +30,7 @@ public class UploadController {
 		}
 
 		if (request.templateId() != null) {
-//			mappingService.getMappingbyId(request.mappingId(), userId);
+//			templateService.getTemplateById(request.mappingId(), userId);
 		}
 
 		UploadResult result = uploadService.createUpload(userId, request.file(), request.mappingId(), request.templateId());

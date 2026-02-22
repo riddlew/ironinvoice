@@ -35,14 +35,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitRewordedCommitMessages">
-    <option name="commitMessagesMapping">
-      <RewordedCommitMessageMapping>
-        <option name="originalMessage" value="WIP: invoice entities, repositories, and migrations" />
-        <option name="rewordedMessage" value="feat: introduce shared module, worker module, and RabbitMQ integration&#10;&#10;- Added a `shared` module for reusable components and contracts.&#10;- Introduced a `worker` module for asynchronous background processing.&#10;- Implemented RabbitMQ configuration and messaging for upload processing.&#10;- Refactored `UploadService` and related DTOs to streamline processing using `UploadJobService`.&#10;- Updated Docker setup (`docker-compose.yml`) to include RabbitMQ, worker service, and shared volume for uploads.&#10;- Refactored entities, migrations, and tests to align with the new shared module." />
-      </RewordedCommitMessageMapping>
-    </option>
-    <option name="currentCommit" value="1" />
-    <option name="onto" value="74e97f7867a85ef69ef7df5be64c083de82d6b89" />
+    <option name="onto" value="0ba3970ee74b9efe50bd60c1174273e7390c7132" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -127,11 +120,11 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="dev.riddle.ironinvoice.shared.uploads.contracts" />
       <recent name="dev.riddle.ironinvoice.api.config.seeders" />
       <recent name="dev.riddle.ironinvoice.api.error.handlers" />
       <recent name="dev.riddle.ironinvoice.features.uploads.application.exceptions" />
       <recent name="dev.riddle.ironinvoice.features.mappings.api.dto.mapping_config.rules" />
-      <recent name="dev.riddle.ironinvoice.features.mappings.api.dto.mapping_config.sources" />
     </key>
   </component>
   <component name="RubyModuleManagerSettings">
@@ -380,7 +373,7 @@
       <option name="presentableId" value="Default" />
       <updated>1771620811272</updated>
       <workItem from="1771620811639" duration="25025000" />
-      <workItem from="1771718151688" duration="8845000" />
+      <workItem from="1771718151688" duration="10484000" />
     </task>
     <task id="LOCAL-00011" summary="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced `mappingId` and `templateId` to upload flow for additional context.&#10;- Added new DTOs (`CreateUploadRequest`, `CreateUploadJobRequest`) to streamline data handling.&#10;- Refactored `UploadService` and `UploadJobService` to process uploads with mapping and template IDs.&#10;- Updated `UploadJobMessage` to include `mappingId` and `templateId`.&#10;- Adjusted package structure and configuration to align with updated shared module.">
       <option name="closed" value="true" />
@@ -470,7 +463,15 @@
       <option name="project" value="LOCAL" />
       <updated>1771726232994</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="fixup! feat: add seeders for users and mapping configuration">
+      <option name="closed" value="true" />
+      <created>1771733462751</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1771733462751</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
