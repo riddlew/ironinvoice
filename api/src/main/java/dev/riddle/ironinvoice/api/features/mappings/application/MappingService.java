@@ -1,6 +1,7 @@
 package dev.riddle.ironinvoice.api.features.mappings.application;
 
 import dev.riddle.ironinvoice.api.features.mappings.application.commands.CreateMappingCommand;
+import dev.riddle.ironinvoice.api.features.mappings.application.commands.UpdateMappingCommand;
 import dev.riddle.ironinvoice.api.features.mappings.persistence.MappingRepository;
 import dev.riddle.ironinvoice.shared.mappings.application.exceptions.MappingNotFoundException;
 import dev.riddle.ironinvoice.shared.mappings.persistence.MappingEntity;
@@ -37,5 +38,29 @@ public class MappingService {
 	@Transactional
 	public List<MappingEntity> getMappingsByUserId(UUID userId) {
 		return mappingRepository.findAllByCreatedBy(userId);
+	}
+
+	@Transactional
+	public MappingEntity updateMapping(UpdateMappingCommand command) {
+		MappingEntity mapping = getMappingbyId(command.mappingId(), command.userId());
+
+		mapping.setTemplateId(command.templateId());
+
+		if (command.name() != null) {
+			mapping.setName(command.name());
+		}
+
+		if (command.config() != null) {
+			mapping.setConfig(command.config());
+		}
+
+		return mappingRepository.save(mapping);
+	}
+
+	@Transactional
+	public void deleteMapping(UUID mappingId, UUID userId) {
+		MappingEntity mapping = getMappingbyId(mappingId, userId);
+
+		mappingRepository.delete(mapping);
 	}
 }

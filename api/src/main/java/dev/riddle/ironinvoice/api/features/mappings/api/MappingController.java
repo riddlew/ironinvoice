@@ -2,9 +2,11 @@ package dev.riddle.ironinvoice.api.features.mappings.api;
 
 import dev.riddle.ironinvoice.api.features.mappings.api.dto.CreateMappingRequest;
 import dev.riddle.ironinvoice.api.features.mappings.api.dto.MappingResponse;
+import dev.riddle.ironinvoice.api.features.mappings.api.dto.UpdateMappingRequest;
 import dev.riddle.ironinvoice.api.features.mappings.api.mapper.MappingMapper;
 import dev.riddle.ironinvoice.api.features.mappings.application.MappingService;
 import dev.riddle.ironinvoice.api.features.mappings.application.commands.CreateMappingCommand;
+import dev.riddle.ironinvoice.api.features.mappings.application.commands.UpdateMappingCommand;
 import dev.riddle.ironinvoice.api.security.CurrentUser;
 import dev.riddle.ironinvoice.shared.mappings.persistence.MappingEntity;
 import jakarta.validation.Valid;
@@ -69,5 +71,32 @@ public class MappingController {
 		return ResponseEntity
 			.created(location)
 			.body(mapper.toResponse(mapping));
+	}
+
+	@PatchMapping("/{id}")
+	public ResponseEntity<MappingResponse> updateMapping(
+		@PathVariable("id") UUID id,
+		@Valid @RequestBody UpdateMappingRequest request
+	) {
+		UUID userId = CurrentUser.requireId();
+
+		MappingEntity updatedMapping = mappingService.updateMapping(new UpdateMappingCommand(
+			id,
+			userId,
+			request.templateId(),
+			request.name(),
+			request.config()
+		));
+
+		return ResponseEntity.ok(mapper.toResponse(updatedMapping));
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> deleteMapping(@PathVariable("id") UUID id) {
+		UUID userId = CurrentUser.requireId();
+
+		mappingService.deleteMapping(id, userId);
+
+		return ResponseEntity.noContent().build();
 	}
 }
