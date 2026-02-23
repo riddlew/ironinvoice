@@ -101,7 +101,7 @@ public class UploadControllerIT {
 		.withPassword("test");
 
 	@Test
-	void upload_withGoodCsv_returns200_withHeadersAndRowCount() throws Exception {
+	void upload_withGoodCsv_returns202_withUploadIdAndStatus() throws Exception {
 		var fileResource = new ClassPathResource("fixtures/uploads/good_data.csv");
 
 		try (InputStream in = fileResource.getInputStream()) {
@@ -118,10 +118,9 @@ public class UploadControllerIT {
 						.contentType(MediaType.MULTIPART_FORM_DATA)
 						.header("X-Test-UserId", user.getId().toString())
 						.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
-				.andExpect(status().isOk())
-				.andExpect(jsonPath("$.id", notNullValue()))
-				.andExpect(jsonPath("$.rowCount", is(100)))
-				.andExpect(jsonPath("$.headers", contains("name", "age", "phone_number", "email")));
+				.andExpect(status().isAccepted())
+				.andExpect(jsonPath("$.uploadId", notNullValue()))
+				.andExpect(jsonPath("$.status", is("PENDING_MAPPING")));
 		}
 	}
 
@@ -300,7 +299,7 @@ public class UploadControllerIT {
 						.contentType(MediaType.MULTIPART_FORM_DATA)
 						.header("X-Test-UserId", user.getId().toString())
 						.header(HttpHeaders.AUTHORIZATION, bearerFor(user)))
-				.andExpect(status().isOk())
+				.andExpect(status().isAccepted())
 				.andReturn()
 				.getResponse()
 				.getContentAsString();
@@ -308,7 +307,7 @@ public class UploadControllerIT {
 
 		ObjectMapper mapper = new ObjectMapper();
 		JsonNode root = mapper.readTree(response);
-		String id = root.get("id").asText();
+		String id = root.get("uploadId").asText();
 
 		mockMvc.perform(
 				get("/api/uploads/{id}", id)
