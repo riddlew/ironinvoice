@@ -4,24 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+    <list default="true" id="9c8aff82-d118-4a62-a769-8d6689c5dd2c" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="148" />
+    <option name="cachedIndexableFilesCount" value="196" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="package-info" />
-        <option value="Interface" />
-        <option value="com.intellij.jpb.FlywayMigrationScript" />
-        <option value="Record" />
         <option value="Enum" />
+        <option value="com.intellij.jpb.FlywayMigrationScript" />
+        <option value="Interface" />
         <option value="Class" />
+        <option value="Record" />
       </list>
     </option>
   </component>
@@ -34,7 +35,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitRewordedCommitMessages">
-    <option name="onto" value="409e7c93291f6394d8670ecef0acbd61929460e4" />
+    <option name="onto" value="0ba3970ee74b9efe50bd60c1174273e7390c7132" />
   </component>
   <component name="KubernetesApiPersistence">{}</component>
   <component name="KubernetesApiProvider">{
@@ -51,6 +52,9 @@
     <commands />
     <urls />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -64,49 +68,82 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "Attach to process.localhost:5005.executor": "ProcessAttachDebug",
     "Docker.Run All.executor": "Run",
     "JUnit.UploadControllerIT.executor": "Run",
     "JUnit.UploadControllerIT.upload_withTooLargeCsv_returns413.executor": "Run",
     "JUnit.UploadServiceTest.executor": "Run",
     "Remote JVM Debug.Debug API Container.executor": "Debug",
+    "RunOnceActivity.MCP Project settings loaded": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "git-widget-placeholder": "feat/store-upload-invoice-data",
-    "last_opened_file_path": "/Users/wmbp/repos/ironinvoice/worker/src/main/java/dev/riddle/ironinvoiceworker",
+    "RunOnceActivity.git.unshallow": "true",
+    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
+    "git-widget-placeholder": "Rebasing feat/mappings",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/wmbp/repos/ironinvoice/worker/src/main/java/dev/riddle/ironinvoice/worker/invoices",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
   "keyToStringList": {
     "DatabaseDriversLRU": [
       "postgresql"
+    ],
+    "GitStage.ChangesTree.GroupingKeys": [
+      "directory",
+      "module",
+      "repository"
     ]
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoiceworker" />
-      <recent name="$PROJECT_DIR$/infrastructure/env" />
-      <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoiceworker/upload" />
-      <recent name="$PROJECT_DIR$/shared/src/contracts" />
-      <recent name="$PROJECT_DIR$/shared/contracts" />
+      <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoice/worker/invoices" />
+      <recent name="$PROJECT_DIR$/api/src/main/java/dev/riddle/ironinvoice/api/features/invoices" />
+      <recent name="$PROJECT_DIR$/api/src/main/java/dev/riddle/ironinvoice/api/features/uploads" />
+      <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoice/worker/uploads" />
+      <recent name="$PROJECT_DIR$/worker/src/main/java/dev/riddle/ironinvoice/worker/mappings" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/api/src/main/resources/db/migration" />
       <recent name="$PROJECT_DIR$/shared/src/main/java/dev/riddlew/ironinvoiceshared/contracts" />
       <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/api/src/main/resources/db/migration" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="dev.riddle.ironinvoiceworker.common.exceptions" />
-      <recent name="dev.riddle.ironinvoice.features.invoice.api.dto" />
-      <recent name="dev.riddle.ironinvoice.features.invoice.persistence" />
+      <recent name="dev.riddle.ironinvoice.shared.uploads.contracts" />
+      <recent name="dev.riddle.ironinvoice.api.config.seeders" />
+      <recent name="dev.riddle.ironinvoice.api.error.handlers" />
+      <recent name="dev.riddle.ironinvoice.features.uploads.application.exceptions" />
+      <recent name="dev.riddle.ironinvoice.features.mappings.api.dto.mapping_config.rules" />
     </key>
+  </component>
+  <component name="RubyModuleManagerSettings">
+    <option name="blackListedRootsPaths">
+      <list>
+        <option value="$PROJECT_DIR$/shared" />
+        <option value="$PROJECT_DIR$/worker" />
+      </list>
+    </option>
+  </component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
   </component>
   <component name="RunManager" selected="Docker.Run All">
     <configuration name="UploadControllerIT" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
@@ -175,9 +212,23 @@
       </RunnerSettings>
       <method v="2" />
     </configuration>
+    <configuration name="IronInvoiceWorkerApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ironinvoiceworker" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dev.riddle.ironinvoice.worker.IronInvoiceWorkerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="IronInvoiceWorkerApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <module name="ironinvoiceworker" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="dev.riddle.ironinvoiceworker.IronInvoiceWorkerApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="IroninvoiceApplication (1)" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="ironinvoice" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="dev.riddle.ironinvoice.api.IroninvoiceApplication" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -214,6 +265,8 @@
       <item itemvalue="JUnit.UploadControllerIT" />
       <item itemvalue="JUnit.UploadServiceTest" />
       <item itemvalue="Remote JVM Debug.Debug API Container" />
+      <item itemvalue="Spring Boot.IronInvoiceWorkerApplication (1)" />
+      <item itemvalue="Spring Boot.IroninvoiceApplication (1)" />
       <item itemvalue="Spring Boot.IronInvoiceWorkerApplication" />
       <item itemvalue="Spring Boot.IroninvoiceApplication" />
     </list>
@@ -313,7 +366,192 @@
       <option name="project" value="LOCAL" />
       <updated>1771507237306</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9c8aff82-d118-4a62-a769-8d6689c5dd2c" name="Changes" comment="" />
+      <created>1771620811272</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1771620811272</updated>
+      <workItem from="1771620811639" duration="25025000" />
+      <workItem from="1771718151688" duration="25542000" />
+    </task>
+    <task id="LOCAL-00011" summary="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced `mappingId` and `templateId` to upload flow for additional context.&#10;- Added new DTOs (`CreateUploadRequest`, `CreateUploadJobRequest`) to streamline data handling.&#10;- Refactored `UploadService` and `UploadJobService` to process uploads with mapping and template IDs.&#10;- Updated `UploadJobMessage` to include `mappingId` and `templateId`.&#10;- Adjusted package structure and configuration to align with updated shared module.">
+      <option name="closed" value="true" />
+      <created>1771709221078</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1771709221078</updated>
+    </task>
+    <task id="LOCAL-00012" summary="feat: add mapping creation and persistence&#10;&#10;- Implemented `MappingService` to handle mapping creation using `CreateMappingCommand`.&#10;- Added DTOs (`CreateMappingCommand`, `MappingConfig`, `MappingField`, `MappingSource`, etc.) for mapping structure.&#10;- Created `MappingEntity` and `MappingRepository` for persistence with schema and config handling.&#10;- Introduced database migration to create `mappings` table">
+      <option name="closed" value="true" />
+      <created>1771709599141</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1771709599141</updated>
+    </task>
+    <task id="LOCAL-00013" summary="feat: add mapping validation to upload process&#10;&#10;- Introduced `getMappingById` method in `MappingService` to validate and fetch user-specific mappings during uploads.&#10;- Added `MappingNotFoundException` to handle missing mappings.&#10;- Created `MappingExceptionHandler` to provide error responses for mapping-related errors.&#10;- Updated `UploadController` to validate `mappingId` in the upload request.&#10;- Introduced `ApiError` for standardized error responses.">
+      <option name="closed" value="true" />
+      <created>1771717642371</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1771717642371</updated>
+    </task>
+    <task id="LOCAL-00014" summary="refactor: move shared package components to feature-specific packages&#10;&#10;- Restructured `shared` package components into appropriate feature-specific packages for better organization.&#10;- Updated imports and references across `api` and `worker` modules to reflect the new package structure.">
+      <option name="closed" value="true" />
+      <created>1771717837751</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1771717837751</updated>
+    </task>
+    <task id="LOCAL-00015" summary="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure.">
+      <option name="closed" value="true" />
+      <created>1771723483901</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1771723483901</updated>
+    </task>
+    <task id="LOCAL-00016" summary="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure.">
+      <option name="closed" value="true" />
+      <created>1771723498929</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1771723498929</updated>
+    </task>
+    <task id="LOCAL-00017" summary="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure.">
+      <option name="closed" value="true" />
+      <created>1771723795679</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1771723795679</updated>
+    </task>
+    <task id="LOCAL-00018" summary="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure.">
+      <option name="closed" value="true" />
+      <created>1771724841301</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1771724841301</updated>
+    </task>
+    <task id="LOCAL-00019" summary="refactor: remove `@Setter` and ability to set schema&#10;&#10;Schema is auto-generated and should not be set manually.&#10;&#10;- Removed unused `@Setter` annotation from `schema` field.">
+      <option name="closed" value="true" />
+      <created>1771725470845</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1771725470845</updated>
+    </task>
+    <task id="LOCAL-00020" summary="feat: add seeders for users and mapping configuration&#10;&#10;- Seeders will only run in non-production environments.">
+      <option name="closed" value="true" />
+      <created>1771725552393</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1771725552393</updated>
+    </task>
+    <task id="LOCAL-00021" summary="fix: update package reference for `json_format_mapper` in worker `application.yml`">
+      <option name="closed" value="true" />
+      <created>1771726232994</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1771726232994</updated>
+    </task>
+    <task id="LOCAL-00022" summary="fixup! feat: add seeders for users and mapping configuration">
+      <option name="closed" value="true" />
+      <created>1771733462751</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1771733462751</updated>
+    </task>
+    <task id="LOCAL-00023" summary="fix: correct package name in trusted packages configuration">
+      <option name="closed" value="true" />
+      <created>1771735127791</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1771735127791</updated>
+    </task>
+    <task id="LOCAL-00024" summary="feat: add CSV header parsing and validation to upload process&#10;&#10;- Implemented `parseCsvHeaders` method in `UploadService` to extract and validate headers from uploaded CSV files.&#10;- Updated `UploadEntity` to store CSV headers as a JSONB field in the database.&#10;- Modified database schema to include `headers` column in `uploads` table.">
+      <option name="closed" value="true" />
+      <created>1771735401347</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1771735401347</updated>
+    </task>
+    <task id="LOCAL-00025" summary="refactor: move mapping validation from `UploadController` to `UploadService`&#10;&#10;- Removed mapping validation logic from `UploadController` for better separation of concerns.  &#10;- Added `MappingService` as a dependency in `UploadService` to handle mapping validation during uploads.">
+      <option name="closed" value="true" />
+      <created>1771735831750</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1771735831750</updated>
+    </task>
+    <task id="LOCAL-00026" summary="refactor: move mapping validation from `UploadController` to `UploadService`&#10;&#10;- Removed mapping validation logic from `UploadController` for better separation of concerns.  &#10;- Added `MappingService` as a dependency in `UploadService` to handle mapping validation during uploads.">
+      <option name="closed" value="true" />
+      <created>1771735915879</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1771735915879</updated>
+    </task>
+    <task id="LOCAL-00027" summary="feat: add polymorphic type handling to `MappingSource` with `JsonTypeInfo`&#10;&#10;- Introduced `@JsonTypeInfo` and `@JsonSubTypes` annotations to enable polymorphic deserialization of `MappingSource`.">
+      <option name="closed" value="true" />
+      <created>1771777745197</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1771777745197</updated>
+    </task>
+    <task id="LOCAL-00028" summary="feat: implement mapping creation and validation in `MappingService`&#10;&#10;- Added `createMapping` and `getMappingById` methods to `MappingService` for managing mappings.&#10;- Introduced `MappingEntity` and associated persistence layer for mapping storage.&#10;- Added polymorphic type handling to `MappingConfig` and related domain classes.&#10;- Integrated mapping validation into `UploadJobReceiver`.">
+      <option name="closed" value="true" />
+      <created>1771777792074</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1771777792074</updated>
+    </task>
+    <task id="LOCAL-00029" summary="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced new upload statuses (`QUEUED`, `PENDING_MAPPING`, `PENDING_TEMPLATE`) to improve tracking.&#10;- Integrated `MappingService` into `UploadService` for validating mappings during uploads.&#10;- Updated `UploadResponse` and `UploadResult` DTOs to include upload status.&#10;- Refactored seeders to use `MappingSchema` with improved schema handling.&#10;- Adjusted database seed logic and fixed `MappingRepository` for consistent queries.">
+      <option name="closed" value="true" />
+      <created>1771777856345</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1771777856345</updated>
+    </task>
+    <task id="LOCAL-00030" summary="refactor: migrate shared entities to shared module&#10;&#10;- Moved `MappingConfig`, its dependencies, and associated exceptions/rules to the shared module for reuse across multiple services.&#10;- Moved entities to the shared module for reuse across multiple services.&#10;- Updated shared module's `pom.xml` to include annotation dependencies.&#10;- Updated imports and adjusted references to reflect the new module structure.">
+      <option name="closed" value="true" />
+      <created>1771782857540</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1771782857540</updated>
+    </task>
+    <task id="LOCAL-00031" summary="refactor: update `UploadController` to return 202 response for upload creation&#10;&#10;- Changed the HTTP response status from 200 (OK) to 202 (Accepted).">
+      <option name="closed" value="true" />
+      <created>1771783076150</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1771783076150</updated>
+    </task>
+    <task id="LOCAL-00032" summary="refactor: replace `System.out` logging with `log.error` in `UploadService`">
+      <option name="closed" value="true" />
+      <created>1771783170131</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1771783170131</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -324,24 +562,51 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="feat/mappings" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
-    <MESSAGE value="fixup! feat: Add CSV upload, storage configuration" />
-    <MESSAGE value="feat: Add testcontainers for integration testing and improve UploadService serialization&#10;&#10;- Updated `pom.xml` with testcontainers dependencies for PostgreSQL integration testing.&#10;- Modified `UploadEntity` to use `@JdbcTypeCode` for JSON column mapping.&#10;- Refactored `UploadService` to directly handle `List&lt;String&gt;` for headers.&#10;- Introduced a `@Profile` annotation for `SecurityConfig` to exclude it in test environments.&#10;- Added an integration test (`UploadControllerIT`) using testcontainers and a test security configuration.&#10;- Added `application-test.yml` for test-specific configuration." />
-    <MESSAGE value="test: enhance test coverage for UploadController and UploadService&#10;&#10;- Added new test cases for handling missing files, non-CSV file uploads, unauthorized access, and various error scenarios.&#10;- Refactored existing test cases to handle exceptions explicitly with `throws` declarations." />
-    <MESSAGE value="test: add edge case tests for UploadController and update configurations&#10;&#10;- Added test cases for empty file, malformed headers, malformed CSV, and oversized CSV uploads.&#10;- Updated `.idea/workspace.xml` with new run configurations for debugging and test environments." />
     <MESSAGE value="fix: ensure normalized paths in UploadService to prevent path traversal vulnerabilities" />
     <MESSAGE value="chore: update .gitignore to exclude IntelliJ creating .ai folder constantly" />
     <MESSAGE value="WIP: templates" />
     <MESSAGE value="WIP: entities, migrations, and repositories" />
     <MESSAGE value="WIP: uploads 1" />
     <MESSAGE value="WIP: invoice entities, repositories, and migrations" />
-    <option name="LAST_COMMIT_MESSAGE" value="WIP: invoice entities, repositories, and migrations" />
+    <MESSAGE value="Merge pull request #4 from riddlew/feat/upload-and-create-invoice&#10;&#10;feat: introduce shared module, worker module, and RabbitMQ integration" />
+    <MESSAGE value="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced `mappingId` and `templateId` to upload flow for additional context.&#10;- Added new DTOs (`CreateUploadRequest`, `CreateUploadJobRequest`) to streamline data handling.&#10;- Refactored `UploadService` and `UploadJobService` to process uploads with mapping and template IDs.&#10;- Updated `UploadJobMessage` to include `mappingId` and `templateId`.&#10;- Adjusted package structure and configuration to align with updated shared module." />
+    <MESSAGE value="feat: add mapping creation and persistence&#10;&#10;- Implemented `MappingService` to handle mapping creation using `CreateMappingCommand`.&#10;- Added DTOs (`CreateMappingCommand`, `MappingConfig`, `MappingField`, `MappingSource`, etc.) for mapping structure.&#10;- Created `MappingEntity` and `MappingRepository` for persistence with schema and config handling.&#10;- Introduced database migration to create `mappings` table" />
+    <MESSAGE value="feat: add mapping validation to upload process&#10;&#10;- Introduced `getMappingById` method in `MappingService` to validate and fetch user-specific mappings during uploads.&#10;- Added `MappingNotFoundException` to handle missing mappings.&#10;- Created `MappingExceptionHandler` to provide error responses for mapping-related errors.&#10;- Updated `UploadController` to validate `mappingId` in the upload request.&#10;- Introduced `ApiError` for standardized error responses." />
+    <MESSAGE value="refactor: move shared package components to feature-specific packages&#10;&#10;- Restructured `shared` package components into appropriate feature-specific packages for better organization.&#10;- Updated imports and references across `api` and `worker` modules to reflect the new package structure." />
+    <MESSAGE value="refactor: restructure project packages for consistency&#10;&#10;- Renamed `api` module artifactId and updated description in `pom.xml`.&#10;- Restructured package structure in the `api` module to organize components under `api` and feature-specific subpackages.&#10;- Updated imports and references to align with the new structure." />
+    <MESSAGE value="refactor: remove `@Setter` and ability to set schema&#10;&#10;Schema is auto-generated and should not be set manually.&#10;&#10;- Removed unused `@Setter` annotation from `schema` field." />
+    <MESSAGE value="feat: add seeders for users and mapping configuration&#10;&#10;- Seeders will only run in non-production environments." />
+    <MESSAGE value="fixup! feat: add seeders for users and mapping configuration" />
+    <MESSAGE value="fix: update package reference for `json_format_mapper` in worker `application.yml`" />
+    <MESSAGE value="fix: correct package name in trusted packages configuration" />
+    <MESSAGE value="feat: add CSV header parsing and validation to upload process&#10;&#10;- Implemented `parseCsvHeaders` method in `UploadService` to extract and validate headers from uploaded CSV files.&#10;- Updated `UploadEntity` to store CSV headers as a JSONB field in the database.&#10;- Modified database schema to include `headers` column in `uploads` table." />
+    <MESSAGE value="refactor: move mapping validation from `UploadController` to `UploadService`&#10;&#10;- Removed mapping validation logic from `UploadController` for better separation of concerns.  &#10;- Added `MappingService` as a dependency in `UploadService` to handle mapping validation during uploads." />
+    <MESSAGE value="feat: add polymorphic type handling to `MappingSource` with `JsonTypeInfo`&#10;&#10;- Introduced `@JsonTypeInfo` and `@JsonSubTypes` annotations to enable polymorphic deserialization of `MappingSource`." />
+    <MESSAGE value="feat: implement mapping creation and validation in `MappingService`&#10;&#10;- Added `createMapping` and `getMappingById` methods to `MappingService` for managing mappings.&#10;- Introduced `MappingEntity` and associated persistence layer for mapping storage.&#10;- Added polymorphic type handling to `MappingConfig` and related domain classes.&#10;- Integrated mapping validation into `UploadJobReceiver`." />
+    <MESSAGE value="feat: enhance upload process with mapping and template support&#10;&#10;- Introduced new upload statuses (`QUEUED`, `PENDING_MAPPING`, `PENDING_TEMPLATE`) to improve tracking.&#10;- Integrated `MappingService` into `UploadService` for validating mappings during uploads.&#10;- Updated `UploadResponse` and `UploadResult` DTOs to include upload status.&#10;- Refactored seeders to use `MappingSchema` with improved schema handling.&#10;- Adjusted database seed logic and fixed `MappingRepository` for consistent queries." />
+    <MESSAGE value="refactor: migrate shared entities to shared module&#10;&#10;- Moved `MappingConfig`, its dependencies, and associated exceptions/rules to the shared module for reuse across multiple services.&#10;- Moved entities to the shared module for reuse across multiple services.&#10;- Updated shared module's `pom.xml` to include annotation dependencies.&#10;- Updated imports and adjusted references to reflect the new module structure." />
+    <MESSAGE value="refactor: update `UploadController` to return 202 response for upload creation&#10;&#10;- Changed the HTTP response status from 200 (OK) to 202 (Accepted)." />
+    <MESSAGE value="refactor: replace `System.out` logging with `log.error` in `UploadService`" />
+    <option name="LAST_COMMIT_MESSAGE" value="refactor: migrate shared entities to shared module&#10;&#10;- Moved `MappingConfig`, its dependencies, and associated exceptions/rules to the shared module for reuse across multiple services.&#10;- Moved entities to the shared module for reuse across multiple services.&#10;- Updated shared module's `pom.xml` to include annotation dependencies.&#10;- Updated imports and adjusted references to reflect the new module structure." />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

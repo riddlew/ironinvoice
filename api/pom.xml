@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>dev.riddle</groupId>
-	<artifactId>ironinvoice</artifactId>
+	<artifactId>ironinvoice-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ironinvoice</name>
-	<description>Platform for generating invoices from sales orders</description>
+	<description>API for generating invoices from sales orders</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -99,6 +99,12 @@
 		</dependency>
 
 		<!-- Other -->
+		<dependency>
+			<groupId>org.apache.commons</groupId>
+			<artifactId>commons-csv</artifactId>
+			<version>1.14.1</version>
+			<scope>compile</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>

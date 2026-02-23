@@ -1,0 +1,13 @@
+package dev.riddle.ironinvoice.api.features.mappings.application.commands;
+
+import dev.riddle.ironinvoice.shared.mappings.domain.mapping_config.MappingConfig;
+
+import java.util.UUID;
+
+public record UpdateMappingCommand(
+	UUID mappingId,
+	UUID userId,
+	UUID templateId,
+	String name,
+	MappingConfig config
+) {}
